@@ -1,13 +1,11 @@
 import Image from "next/image";
 import PendingTasksList from "./components/PendingTasksList";
 import { get } from "http";
+import { getTasks } from "../utils/utils";
 
 export default async function Home() {
 
-    const res = await fetch("http://localhost:3000/database.json");
-    const tasks = await res.json();
-    console.log("dev ~ Home ~ tasks:", tasks)
-
+  const tasks = await getTasks();
 
   return (
     <main style={{ margin: 20 }}>
