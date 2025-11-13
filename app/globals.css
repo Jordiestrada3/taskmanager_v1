@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --footer-height: 80px;
 }
 
 @theme inline {
@@ -30,6 +31,13 @@ h1 {
   font-weight: 700;
 }
 
+.site {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .customCard {
   background-color: wheat;
   padding: 20px;
@@ -47,10 +55,10 @@ h1 {
   max-width: 400px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  padding: 5px
+  padding: 5px;
 }
 
-.taskForm input{
+.taskForm input {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -63,5 +71,39 @@ h1 {
   border: none;
   background-color: #0070f3;
   font-size: 16px;
-  cursor: pointer; 
+  cursor: pointer;
+}
+
+.custom-footer {
+  height: var(--footer-height);
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 1em 0;
+  text-align: center;
+  border-top: 1px solid #eaeaea;
+  gap: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.custom-footer-item {
+  color: black;
+  background-color: bisque;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+main {
+  padding-bottom: var(--footer-height); /* To prevent content being hidden behind the footer */
+  margin: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
