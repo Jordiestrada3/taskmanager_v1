@@ -1,7 +1,8 @@
 import Image from "next/image";
 import PendingTasksList from "./components/PendingTasksList";
 import { get } from "http";
-import { getTasks } from "../utils/utils";
+import { getTasks, createTask } from "../utils/utils";
+import TaskForm from "./components/TaskForm";
 
 export default async function Home() {
 
@@ -10,6 +11,7 @@ export default async function Home() {
   return (
     <main style={{ margin: 20 }}>
       <PendingTasksList tasks={tasks} />
+      <TaskForm />
     </main>
   );
 }

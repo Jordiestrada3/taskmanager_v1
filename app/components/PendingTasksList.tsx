@@ -22,7 +22,6 @@ console.log("dev ~ PendingTasksList ~ tasks:", tasks)
           </div>
         </div>
       ))}
-      {/* Hardcoded example card */}
     </main>
   );
 }
