@@ -12,8 +12,7 @@ console.log("dev ~ PendingTasksList ~ tasks:", tasks)
 
     
   return (
-    <main style={{ margin: 20 }}>
-      <h1>Welcome to My Next.js App</h1>
+    <div style={{ margin: 20 }}>
       {tasks.map((task, index) => (
         <div key={index} className="customCard">
           <div>
@@ -22,6 +21,6 @@ console.log("dev ~ PendingTasksList ~ tasks:", tasks)
           </div>
         </div>
       ))}
-    </main>
+    </div>
   );
 }
