@@ -29,7 +29,7 @@ export async function createTask(formData: FormData) {
         id: 1,
         name: name,
         score: score,
-        completed: false,
+        pending: true,
         resetTime: null,
         createdAt: "2024-06-15T10:00:00Z",
     };
