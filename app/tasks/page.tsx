@@ -1,9 +1,11 @@
 import Image from "next/image";
-import PendingTasksList from "../components/PendingTasksList";
+import TasksList from "../components/TasksList";
 import { get } from "http";
 import { getTasks, createTask } from "../../utils/utils";
 import TaskForm from "../components/TaskForm";
 import Footer from "../components/Footer";
+import FormTrigger from "../components/FormTrigger/FormTrigger";
+import { Dialog } from "radix-ui";
 
 export default async function TasksPage() {
   const tasks = await getTasks();
@@ -11,15 +13,14 @@ export default async function TasksPage() {
   return (
     <main
       style={{
-        margin: 20,
         alignItems: "center",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
+        margin: "20px",
       }}
     >
-      <h1>Tasks Page</h1>
-      <PendingTasksList tasks={tasks} />
-      <TaskForm />
+      <TasksList tasks={tasks} />
+      <FormTrigger />
       <Footer />
     </main>
   );

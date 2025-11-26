@@ -20,21 +20,20 @@ export async function getTasks() {
 export async function createTask(formData: FormData) {
   "use server";
   const name = formData.get("name");
-  const score = formData.get("score");
-  // const resetTime = formData.get("resetTime");
+  const score = Number(formData.get("score"));
+  const frequencyTime = Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000; // Convert days to milliseconds
 
   const filePath = path.join(process.cwd(), "data", "tasks.json");  
   const tasksData = await getTasks();
   const newTask = {
-        id: 1,
-        name: name,
-        score: score,
-        pending: true,
-        resetTime: null,
-        createdAt: "2024-06-15T10:00:00Z",
+        id: Math.random().toString(36).substr(2, 9),
+        name: name as string,
+        score: score as number,
+        frequencyTime: frequencyTime as number,
+        lastTimeDone: Date.now() - frequencyTime, // Set to pending automaticly
     };
-  tasksData.push(newTask);
-  await fs.writeFile(filePath, JSON.stringify(tasksData, null, 2));
+    const newTasksData = [...tasksData, newTask];
+  await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
   revalidatePath('/')
 }
 

@@ -5,9 +5,18 @@ import { createTask } from "../../utils/utils";
 export default function TaskForm() {
   return (
     <form className="taskForm" method="post" action={createTask}>
-      <input type="text" name="name" placeholder="Task Name" required />
-      <input type="number" name="score" placeholder="Score" required />
-      {/* <input type="datetime-local" name="resetTime" placeholder="Reset Time" /> */}
+      <fieldset>
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Task Name" required />
+      </fieldset>
+      <fieldset>
+        <label>Score</label>
+        <input type="number" name="score" placeholder="Score" required />
+      </fieldset>
+      <fieldset>
+        <label>Frequency Time (days)</label>
+        <input type="number" name="frequencyTime" placeholder="Frequency Time (days)" required />
+      </fieldset>
       <button type="submit">Add Task</button>
     </form>
   );
