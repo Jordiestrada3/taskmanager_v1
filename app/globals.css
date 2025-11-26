@@ -20,6 +20,10 @@
   }
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -41,37 +45,65 @@ h1 {
 .customCard {
   background-color: wheat;
   padding: 20px;
-  margin: 20px;
   border-radius: 10px;
   color: black;
-  max-width: 400px;
+  width: 90%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .taskForm {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   max-width: 400px;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 5px;
+  border-width: 0;
+}
+
+.taskForm fieldset {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.taskForm label {
+  font-size: 15px;
+  color: rgb(70, 143, 70);
+  width: 90px;
+  text-align: right;
 }
 
 .taskForm input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 15px;
+  color: rgb(70, 143, 70);
+  box-shadow: 0 0 0 1px rgb(70, 143, 70);
+  height: 35px;
+}
+
+.taskForm input:focus {
+  box-shadow: 0 0 0 2px rgb(70, 143, 70);
 }
 
 .taskForm button {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #0070f3;
+  background-color: rgb(70, 143, 70);
   font-size: 16px;
   cursor: pointer;
+  color: white;
+  justify-content: center;
+  display: inline-flex;
+  align-self: flex-end;
+  width: 100;
 }
 
 .custom-footer {
@@ -87,7 +119,7 @@ h1 {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   background-color: white;
 }
 
@@ -101,7 +133,9 @@ h1 {
 }
 
 main {
-  padding-bottom: var(--footer-height); /* To prevent content being hidden behind the footer */
+  padding-bottom: var(
+    --footer-height
+  ); /* To prevent content being hidden behind the footer */
   margin: 20px;
   align-items: center;
   display: flex;
