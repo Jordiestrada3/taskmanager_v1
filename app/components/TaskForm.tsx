@@ -4,7 +4,7 @@ import { createTask } from "../../utils/utils";
 
 export default function TaskForm() {
   return (
-    <form className="taskForm" method="post" action={createTask}>
+    <form className="taskForm" action={createTask}>
       <fieldset>
         <label>Name</label>
         <input type="text" name="name" placeholder="Task Name" required />
