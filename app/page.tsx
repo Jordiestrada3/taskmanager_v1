@@ -2,7 +2,6 @@ import Image from "next/image";
 import PendingTasksList from "./components/PendingTasksList";
 import { get } from "http";
 import { getTasks, createTask } from "../utils/utils";
-import TaskForm from "./components/TaskForm";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -13,8 +12,8 @@ export default async function Home() {
     <div className="site">
       <Header />
       <main>
+        <h1>Pending Tasks Page</h1>
         <PendingTasksList tasks={tasks} />
-        <TaskForm />
       </main>
       <Footer />
     </div>
