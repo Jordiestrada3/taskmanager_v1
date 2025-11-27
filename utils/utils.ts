@@ -38,6 +38,14 @@ export async function createTask(formData: FormData) {
 }
 
 
+export async function deleteTask(task: object) {
+  const filePath = path.join(process.cwd(), "data", "tasks.json");  
+  const tasksData = await getTasks();
+  const newTasksData = tasksData.filter((t: any) => t.id !== (task as any).id);
+  await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
+  revalidatePath('/')
+}
+
 
 
 
@@ -45,9 +53,5 @@ export async function createTask(formData: FormData) {
 
 
 export async function updateTask() {
-  // Placeholder for future implementation
-}
-
-export async function deleteTask() {
   // Placeholder for future implementation
 }

@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import DeleteButton from "./DeleteButon";
+import { deleteTask } from "@/utils/utils";
 
 type TasksListProps = {
   tasks: object[];
@@ -22,6 +24,7 @@ export default function TasksList({ tasks }: TasksListProps) {
     >
       {tasks.map((task, index) => (
         <div key={index} className="customCard">
+          <DeleteButton item={task} action={() => deleteTask(task)} />
           <div>
             <h1>{task.name}</h1>
             <p>Score: {task.score}</p>
