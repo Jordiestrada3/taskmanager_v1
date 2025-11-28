@@ -4,6 +4,9 @@ import { get } from "http";
 import { revalidatePath } from "next/cache";
 import path from "path";
 
+
+
+
 export async function getTasks() {
   const dataDirectory = path.join(process.cwd(), "data");
   const filePath = path.join(dataDirectory, "tasks.json");
@@ -66,6 +69,69 @@ export async function updateTask(task, formData: FormData) {
   });
 
   await fs.writeFile(filePath, JSON.stringify(updatedTasks, null, 2));
+
+  revalidatePath("/");
+}
+
+
+
+
+export async function getUsers() {
+  const dataDirectory = path.join(process.cwd(), "data");
+  const filePath = path.join(dataDirectory, "users.json");
+  const fileContents = await fs.readFile(filePath, "utf8");
+  const usersData = JSON.parse(fileContents);
+  return usersData;
+}
+
+
+export async function createUser(formData: FormData) {
+  "use server";
+  const name = formData.get("name");
+  const score = Number(formData.get("score"));
+  
+  const filePath = path.join(process.cwd(), "data", "users.json");
+  const usersData = await getUsers();
+  const newUser = {
+    id: Math.random().toString(36).substr(2, 9),
+    name: name as string,
+    score: score as number,
+  };
+  const newUsersData = [...usersData, newUser];
+  await fs.writeFile(filePath, JSON.stringify(newUsersData, null, 2));
+  revalidatePath("/");
+}
+
+export async function deleteUser(user: object) {
+  const filePath = path.join(process.cwd(), "data", "users.json");
+  const usersData = await getUsers();
+  const newUsersData = usersData.filter((item: object) => item.id !== user.id);
+  await fs.writeFile(filePath, JSON.stringify(newUsersData, null, 2));
+  revalidatePath("/");
+}
+
+export async function updateUser(user, formData: FormData) {
+  "use server";
+
+  const userId = user.id;
+  const name = formData.get("name") as string;
+  const score = Number(formData.get("score"));
+
+  const filePath = path.join(process.cwd(), "data", "users.json");
+  const usersData = await getUsers();
+
+  const updatedUsers = usersData.map((user) => {
+    if (user.id === userId) {
+      return {
+        ...user,
+        name,
+        score,
+      };
+    }
+    return user;
+  });
+
+  await fs.writeFile(filePath, JSON.stringify(updatedUsers, null, 2));
 
   revalidatePath("/");
 }

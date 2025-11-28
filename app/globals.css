@@ -51,7 +51,7 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.taskForm {
+.customForm {
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -61,21 +61,21 @@ h1 {
   border-width: 0;
 }
 
-.taskForm fieldset {
+.customForm fieldset {
   display: flex;
   gap: 20px;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.taskForm label {
+.customForm label {
   font-size: 15px;
   color: rgb(70, 143, 70);
   width: 90px;
   text-align: right;
 }
 
-.taskForm input {
+.customForm input {
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -88,11 +88,11 @@ h1 {
   height: 35px;
 }
 
-.taskForm input:focus {
+.customForm input:focus {
   box-shadow: 0 0 0 2px rgb(70, 143, 70);
 }
 
-.taskForm button {
+.customForm button {
   padding: 10px;
   border-radius: 5px;
   border: none;

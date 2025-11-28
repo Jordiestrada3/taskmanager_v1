@@ -1,27 +1,19 @@
-import Image from "next/image";
-import PendingTasksList from "../components/PendingTasksList";
-import { get } from "http";
-import { getTasks, createTask } from "../../utils/utils";
-import TaskForm from "../components/TaskForm";
+import { getUsers } from "../../utils/utils";
 import Footer from "../components/Footer";
-import Link from "next/link";
+import Header from "../components/Header";
+import UsersPageContents from "../components/UsersPageContents";
 
 export default async function UsersPage() {
-  const tasks = await getTasks();
+  const users = await getUsers();
 
   return (
-    <main
-      style={{
-        margin: 20,
-        alignItems: "center",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <h1>Users Page</h1>
-      {/* <PendingTasksList tasks={tasks} /> */}
-      {/* <TaskForm /> */}
+    <div className="site">
+      <Header />
+      <main>
+        <h1>Users Page</h1>
+        <UsersPageContents users={users} />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

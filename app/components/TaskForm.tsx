@@ -10,7 +10,7 @@ type TaskFormProps ={
 
 export default function TaskForm({buttonText, action, task}: TaskFormProps) {
   return (
-    <form className="taskForm" action={action}>
+    <form className="customForm" action={action}>
       <fieldset>
         <label>Name</label>
         <input type="text" name="name" placeholder="Task Name" defaultValue={task?.name} required />
