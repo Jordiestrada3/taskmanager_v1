@@ -15,8 +15,9 @@ export default function TasksPageContents({ tasks }: TasksPageContentsProps) {
 
   return (
     <>
-      <TasksList tasks={tasks} />
+      <TasksList tasks={tasks} isEditing={isEditing} />
       <FormTrigger />
+      
       <button
         className="editButton"
         onClick={() => setIsEditing(!isEditing)}

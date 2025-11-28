@@ -12,46 +12,60 @@ export async function getTasks() {
   return tasksData;
 }
 
-
-
-
-
-
 export async function createTask(formData: FormData) {
   "use server";
   const name = formData.get("name");
   const score = Number(formData.get("score"));
-  const frequencyTime = Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000; // Convert days to milliseconds
+  const frequencyTime =
+    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000; // Convert days to milliseconds
 
-  const filePath = path.join(process.cwd(), "data", "tasks.json");  
+  const filePath = path.join(process.cwd(), "data", "tasks.json");
   const tasksData = await getTasks();
   const newTask = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: name as string,
-        score: score as number,
-        frequencyTime: frequencyTime as number,
-        lastTimeDone: Date.now() - frequencyTime, // Set to pending automaticly
-    };
-    const newTasksData = [...tasksData, newTask];
+    id: Math.random().toString(36).substr(2, 9),
+    name: name as string,
+    score: score as number,
+    frequencyTime: frequencyTime as number,
+    lastTimeDone: Date.now() - frequencyTime, // Set to pending automaticly
+  };
+  const newTasksData = [...tasksData, newTask];
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
-  revalidatePath('/')
+  revalidatePath("/");
 }
 
-
 export async function deleteTask(task: object) {
-  const filePath = path.join(process.cwd(), "data", "tasks.json");  
+  const filePath = path.join(process.cwd(), "data", "tasks.json");
   const tasksData = await getTasks();
   const newTasksData = tasksData.filter((item: object) => item.id !== task.id);
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
-  revalidatePath('/')
+  revalidatePath("/");
 }
 
+export async function updateTask(task, formData: FormData) {
+  "use server";
 
+  const id = task.id;
+  const name = formData.get("name") as string;
+  const score = Number(formData.get("score"));
+  const frequencyTime =
+    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000;
 
+  const filePath = path.join(process.cwd(), "data", "tasks.json");
+  const tasksData = await getTasks();
 
+  const updatedTasks = tasksData.map((task) => {
+    if (task.id === id) {
+      return {
+        ...task,
+        name,
+        score,
+        frequencyTime,
+      };
+    }
+    return task;
+  });
 
+  await fs.writeFile(filePath, JSON.stringify(updatedTasks, null, 2));
 
-
-export async function updateTask() {
-  // Placeholder for future implementation
+  revalidatePath("/");
 }
