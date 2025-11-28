@@ -4,6 +4,7 @@ import TaskForm from "../TaskForm";
 import { Dialog } from "radix-ui";
 import "./DialogStyle.css";
 import { PlusIcon } from "@radix-ui/react-icons";
+import { createTask } from "@/utils/utils";
 // import useScrollbarFix from "./useScrollbarFix.js";
 
 export default function FormTrigger() {
@@ -26,21 +27,7 @@ export default function FormTrigger() {
             Make changes to your profile here. Click save when you're done.
           </Dialog.Description>
 
-          <TaskForm />
-
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="name">
-              Name
-            </label>
-            <input className="Input" id="name" defaultValue="Pedro Duarte" />
-          </fieldset>
-
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="username">
-              Username
-            </label>
-            <input className="Input" id="username" defaultValue="@peduarte" />
-          </fieldset>
+          <TaskForm buttonText={"Add Task"} action={createTask} />
 
           <div
             style={{
