@@ -25,42 +25,33 @@ export default function TasksList({ tasks, isEditing }: TasksListProps) {
       }}
     >
       {tasks.map((task, index) => (
-        <div>
+        <div key={index} className="customCard">
           {isEditing ? (
             <>
               <DeleteButton item={task} action={() => deleteTask(task)} />
               <EditTaskForm task={task} key={index}>
-                <div key={index} className="customCard">
-                  <div>
-                    <h1>{task.name}</h1>
-                    <p>Score: {task.score}</p>
-                    <p>
-                      Frequency Time (days):{" "}
-                      {task.frequencyTime / (24 * 60 * 60 * 1000)}
-                    </p>
-                  </div>
+                <div>
+                  <h1>{task.name}</h1>
+                  <p>Score: {task.score}</p>
+                  <p>
+                    Frequency Time (days):{" "}
+                    {task.frequencyTime / (24 * 60 * 60 * 1000)}
+                  </p>
                 </div>
               </EditTaskForm>
             </>
           ) : (
-            <div key={index} className="customCard">
-              <div>
-                <h1>{task.name}</h1>
-                <p>Score: {task.score}</p>
-                <p>
-                  Frequency Time (days):{" "}
-                  {task.frequencyTime / (24 * 60 * 60 * 1000)}
-                </p>
-              </div>
+            <div>
+              <h1>{task.name}</h1>
+              <p>Score: {task.score}</p>
+              <p>
+                Frequency Time (days):{" "}
+                {task.frequencyTime / (24 * 60 * 60 * 1000)}
+              </p>
             </div>
           )}
         </div>
       ))}
     </div>
   );
-}
-
-{
-  /* {isEditing ? (
-          ) : null} */
 }
