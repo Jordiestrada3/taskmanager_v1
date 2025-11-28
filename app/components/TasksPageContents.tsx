@@ -9,19 +9,23 @@ type TasksPageContentsProps = {
 };
 
 export default function TasksPageContents({ tasks }: TasksPageContentsProps) {
-  console.log("dev ~ TasksPageContents ~ tasks:", tasks)
   const [isEditing, setIsEditing] = React.useState(false);
-  console.log("dev ~ TasksPageContents ~ isEditing:", isEditing)
 
   return (
-    <>
+    <div
+      style={{
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+      }}
+    >
       <TasksList tasks={tasks} isEditing={isEditing} />
       <FormTrigger />
-      
-      <button
-        className="editButton"
-        onClick={() => setIsEditing(!isEditing)}
-      >EDIT</button>
-    </>
+
+      <button className="editButton" onClick={() => setIsEditing(!isEditing)}>
+        EDIT
+      </button>
+    </div>
   );
 }
