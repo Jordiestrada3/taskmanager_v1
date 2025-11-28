@@ -44,7 +44,7 @@ export async function deleteTask(task: object) {
 export async function updateTask(task, formData: FormData) {
   "use server";
 
-  const id = task.id;
+  const taskId = task.id;
   const name = formData.get("name") as string;
   const score = Number(formData.get("score"));
   const frequencyTime =
@@ -54,7 +54,7 @@ export async function updateTask(task, formData: FormData) {
   const tasksData = await getTasks();
 
   const updatedTasks = tasksData.map((task) => {
-    if (task.id === id) {
+    if (task.id === taskId) {
       return {
         ...task,
         name,
