@@ -182,3 +182,20 @@ main {
 .dialogCancelButton:hover {
   background-color: darkgray;
 }
+
+.editButton {
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px; 
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  bottom: 180px;
+  right: 20px;
+}
+
+

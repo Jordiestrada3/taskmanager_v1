@@ -41,7 +41,7 @@ export async function createTask(formData: FormData) {
 export async function deleteTask(task: object) {
   const filePath = path.join(process.cwd(), "data", "tasks.json");  
   const tasksData = await getTasks();
-  const newTasksData = tasksData.filter((t: any) => t.id !== (task as any).id);
+  const newTasksData = tasksData.filter((item: object) => item.id !== task.id);
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
   revalidatePath('/')
 }
