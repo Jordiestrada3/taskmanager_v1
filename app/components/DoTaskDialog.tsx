@@ -39,16 +39,14 @@ export default function DoTaskDialog({
           >
             <select
               name="user"
-              onChange={(e) => {
-                setSelectedUser(e.target.value);
-              }}
+              value={selectedUser}
+              onChange={(e) => setSelectedUser(e.target.value)}
               className="doTaskSelect"
-              defaultValue={""}
             >
               <option value="" disabled>
                 Select a user
               </option>
-              {users.map((user: any) => (
+              {users.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.name}
                 </option>

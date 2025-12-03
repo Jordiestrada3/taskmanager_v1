@@ -184,6 +184,7 @@ main {
 }
 
 .editButton {
+  position: fixed;
   background-color: blue;
   color: white;
   border: none;
@@ -193,9 +194,8 @@ main {
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  position: absolute;
   bottom: 180px;
-  right: 20px;
+  right: 20px; 
 }
 
 .doTaskSelect {

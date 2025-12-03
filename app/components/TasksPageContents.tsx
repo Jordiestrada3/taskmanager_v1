@@ -19,6 +19,7 @@ export default function TasksPageContents({ tasks }: TasksPageContentsProps) {
         display: "flex",
         flexDirection: "column",
         width: "100%",
+        position: "relative",
       }}
     >
       <TasksList tasks={tasks} isEditing={isEditing} />
