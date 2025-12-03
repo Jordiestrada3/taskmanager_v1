@@ -22,7 +22,7 @@ export default function EditTaskForm({ task, children }: EditTaskFormProps) {
             Make changes to your profile here. Click save when you're done.
           </Dialog.Description>
 
-          <TaskForm buttonText={"Edit Task"} action={(formData) => updateTask(task, formData)} task={task} />
+          <TaskForm buttonText={"Edit Task"} action={(formData: FormData) => updateTask(task, formData)} task={task} />
 
           <div
             style={{

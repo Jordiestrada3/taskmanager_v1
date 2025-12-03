@@ -22,7 +22,7 @@ export default function EditUserForm({ user, children }: EditUserFormProps) {
             Make changes to this user here. Click save when you're done.
           </Dialog.Description>
 
-          <UserForm buttonText={"Edit User"} action={(formData) => updateUser(user, formData)} user={user} />
+          <UserForm buttonText={"Edit User"} action={(formData: FormData) => updateUser(user, formData)} user={user} />
 
           <div
             style={{

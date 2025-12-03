@@ -198,4 +198,19 @@ main {
   right: 20px;
 }
 
+.doTaskSelect {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 15px;
+  color: rgb(70, 143, 70);
+  box-shadow: 0 0 0 1px rgb(70, 143, 70);
+  height: 35px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
 
