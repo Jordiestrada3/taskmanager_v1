@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import { get } from "http";
 import { revalidatePath } from "next/cache";
 import path from "path";
+import { Task } from "@/types/task";
+import { User } from "@/types/user";
 
 export async function getTasks() {
   const dataDirectory = path.join(process.cwd(), "data");
@@ -33,15 +35,15 @@ export async function createTask(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function deleteTask(task: object) {
+export async function deleteTask(task: Task) {
   const filePath = path.join(process.cwd(), "data", "tasks.json");
   const tasksData = await getTasks();
-  const newTasksData = tasksData.filter((item: object) => item.id !== task.id);
+  const newTasksData = tasksData.filter((item: Task) => item.id !== task.id);
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
   revalidatePath("/");
 }
 
-export async function updateTask(task, formData: FormData) {
+export async function updateTask(task: Task, formData: FormData) {
   "use server";
 
   const taskId = task.id;
@@ -53,7 +55,7 @@ export async function updateTask(task, formData: FormData) {
   const filePath = path.join(process.cwd(), "data", "tasks.json");
   const tasksData = await getTasks();
 
-  const updatedTasks = tasksData.map((task) => {
+  const updatedTasks = tasksData.map((task: Task) => {
     if (task.id === taskId) {
       return {
         ...task,
@@ -95,15 +97,15 @@ export async function createUser(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function deleteUser(user: object) {
+export async function deleteUser(user: User) {
   const filePath = path.join(process.cwd(), "data", "users.json");
   const usersData = await getUsers();
-  const newUsersData = usersData.filter((item: object) => item.id !== user.id);
+  const newUsersData = usersData.filter((item: User) => item.id !== user.id);
   await fs.writeFile(filePath, JSON.stringify(newUsersData, null, 2));
   revalidatePath("/");
 }
 
-export async function updateUser(user, formData: FormData) {
+export async function updateUser(user: User, formData: FormData) {
   "use server";
 
   const userId = user.id;
@@ -113,7 +115,7 @@ export async function updateUser(user, formData: FormData) {
   const filePath = path.join(process.cwd(), "data", "users.json");
   const usersData = await getUsers();
 
-  const updatedUsers = usersData.map((user) => {
+  const updatedUsers = usersData.map((user: User) => {
     if (user.id === userId) {
       return {
         ...user,
@@ -129,14 +131,14 @@ export async function updateUser(user, formData: FormData) {
   revalidatePath("/");
 }
 
-export async function markTaskAsDone(task: object, userId: object) {
+export async function markTaskAsDone(task: Task, userId: string) {
   "use server";
   const taskId = task.id;
 
   const tasksFilePath = path.join(process.cwd(), "data", "tasks.json");
   const tasksData = await getTasks();
 
-  const updatedTasks = tasksData.map((task) => {
+  const updatedTasks = tasksData.map((task: Task) => {
     if (task.id === taskId) {
       return { ...task, lastTimeDone: Date.now() };
     }
@@ -147,7 +149,7 @@ export async function markTaskAsDone(task: object, userId: object) {
 
   const usersFilePath = path.join(process.cwd(), "data", "users.json");
   const usersData = await getUsers();
-  const updatedUsers = usersData.map((user) => {
+  const updatedUsers = usersData.map((user: User) => {
     if (user.id === userId) {
       return { ...user, score: user.score + task.score };
     }

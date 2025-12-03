@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { createTask } from "../../utils/utils";
+import { Task } from "@/types/task";
 
 type TaskFormProps ={
   buttonText: string;
-  action: Function;
-  task?: object;  
+  action: (formData: FormData) => void | Promise<void>;
+  task?: Task;  
 }
 
 export default function TaskForm({buttonText, action, task}: TaskFormProps) {
@@ -21,7 +22,7 @@ export default function TaskForm({buttonText, action, task}: TaskFormProps) {
       </fieldset>
       <fieldset>
         <label>Frequency Time (days)</label>
-        <input type="number" name="frequencyTime" placeholder="Frequency Time (days)" defaultValue={task?.frequencyTime  / 24 / 60 / 60 / 1000} required />
+        <input type="number" name="frequencyTime" placeholder="Frequency Time (days)" defaultValue={(task?.frequencyTime ?? 0) / 1000 / 60 / 60 / 24} required />
       </fieldset>
       <button type="submit">{buttonText}</button>
     </form>

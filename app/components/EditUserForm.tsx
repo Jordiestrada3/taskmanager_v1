@@ -3,9 +3,10 @@
 import { Dialog } from "radix-ui";
 import UserForm from "./UserForm";
 import { updateUser } from "@/utils/utils";
+import { User } from "@/types/user";
 
 type EditUserFormProps = {
-  user: object;
+  user: User;
   children: any;
 };
 

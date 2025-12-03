@@ -3,10 +3,12 @@
 import React from "react";
 import { Dialog } from "radix-ui";
 import { markTaskAsDone } from "@/utils/utils";
+import { Task } from "@/types/task";
+import { User } from "@/types/user";
 
 type DoTaskDialogProps = {
-  task: object;
-  users: object[];
+  task: Task;
+  users: User[];
   children: any;
 };
 
@@ -16,7 +18,7 @@ export default function DoTaskDialog({
   users,
 }: DoTaskDialogProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedUser, setSelectedUser] = React.useState({});
+  const [selectedUser, setSelectedUser] = React.useState("");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>

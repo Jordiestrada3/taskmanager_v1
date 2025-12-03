@@ -1,11 +1,13 @@
 "use client";
 
+import { Task } from "@/types/task";
 import DoTaskDialog from "./DoTaskDialog";
 import "./FormTrigger/DialogStyle.css";
+import { User } from "@/types/user";
 
 type PendingTasksListProps = {
-  tasks: object[];
-  users: object[];
+  tasks: Task[];
+  users: User[];
 };
 
 export default function PendingTasksList({

@@ -3,9 +3,10 @@
 import React from "react";
 import UsersList from "./UsersList";
 import FormTrigger from "./FormTrigger/FormTrigger";
+import { User } from "@/types/user";
 
 type UsersPageContentsProps = {
-  users: object[];
+  users: User[];
 };
 
 export default function UsersPageContents({ users }: UsersPageContentsProps) {

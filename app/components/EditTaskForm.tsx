@@ -3,9 +3,10 @@
 import { Dialog } from "radix-ui";
 import TaskForm from "./TaskForm";
 import { updateTask } from "@/utils/utils";
+import { Task } from "@/types/task";
 
 type EditTaskFormProps = {
-  task: object;
+  task: Task;
   children: any;
 };
 

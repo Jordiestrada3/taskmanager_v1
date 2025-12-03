@@ -1,10 +1,11 @@
+import { User } from "@/types/user";
 import { getUsers } from "../../utils/utils";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import UsersPageContents from "../components/UsersPageContents";
 
 export default async function UsersPage() {
-  const users = await getUsers();
+  const users: User[] = await getUsers();
 
   return (
     <div className="site">

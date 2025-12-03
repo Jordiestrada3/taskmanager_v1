@@ -6,9 +6,10 @@ import DeleteButton from "./DeleteButon";
 import { deleteTask, deleteUser } from "@/utils/utils";
 import EditTaskForm from "./EditTaskForm";
 import EditUserForm from "./EditUserForm";
+import { User } from "@/types/user";
 
 type UsersListProps = {
-  users: object[];
+  users: User[];
   isEditing: boolean;
 };
 

@@ -3,9 +3,10 @@
 import React from "react";
 import TasksList from "./TasksList";
 import FormTrigger from "./FormTrigger/FormTrigger";
+import { Task } from "@/types/task";
 
 type TasksPageContentsProps = {
-  tasks: object[];
+  tasks: Task[];
 };
 
 export default function TasksPageContents({ tasks }: TasksPageContentsProps) {

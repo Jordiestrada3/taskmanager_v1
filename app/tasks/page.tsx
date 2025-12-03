@@ -1,10 +1,11 @@
+import { Task } from "@/types/task";
 import { getTasks, createTask } from "../../utils/utils";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import TasksPageContents from "../components/TasksPageContents";
 
 export default async function TasksPage() {
-  const tasks = await getTasks();
+  const tasks: Task[] = await getTasks();
 
   return (
     <div className="site">

@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 import DeleteButton from "./DeleteButon";
 import { deleteTask } from "@/utils/utils";
 import EditTaskForm from "./EditTaskForm";
+import { Task } from "@/types/task";
 
 type TasksListProps = {
-  tasks: object[];
+  tasks: Task[];
   isEditing: boolean;
 };
 

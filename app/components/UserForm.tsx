@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { createUser } from "../../utils/utils";
+import { User } from "@/types/user";
 
 type UserFormProps ={
   buttonText: string;
-  action: Function;
-  user?: object;  
+  action: (formData: FormData) => void | Promise<void>;
+  user?: User;  
 }
 
 export default function UserForm({buttonText, action, user}: UserFormProps) {
