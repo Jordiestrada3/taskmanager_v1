@@ -110,7 +110,6 @@ export async function updateUser(user: User, formData: FormData) {
 
   const userId = user.id;
   const name = formData.get("name") as string;
-  const score = Number(formData.get("score"));
 
   const filePath = path.join(process.cwd(), "data", "users.json");
   const usersData = await getUsers();
@@ -120,7 +119,6 @@ export async function updateUser(user: User, formData: FormData) {
       return {
         ...user,
         name,
-        score,
       };
     }
     return user;
