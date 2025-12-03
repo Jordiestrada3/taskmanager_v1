@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import DoTaskDialog from "./DoTaskDialog";
+import "./FormTrigger/DialogStyle.css";
 
 type PendingTasksListProps = {
   tasks: object[];
@@ -39,7 +38,7 @@ export default function PendingTasksList({
               <p>
                 Last Time Done:
                 {new Date(task.lastTimeDone).toLocaleDateString()} (
-                {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}{" "}
+                {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}
                 days ago)
               </p>
             </div>

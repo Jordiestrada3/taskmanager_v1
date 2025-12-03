@@ -1,8 +1,8 @@
 "use client";
 
-import { markTaskAsDone } from "@/utils/utils";
-import { Dialog } from "radix-ui";
 import React from "react";
+import { Dialog } from "radix-ui";
+import { markTaskAsDone } from "@/utils/utils";
 
 type DoTaskDialogProps = {
   task: object;
@@ -17,7 +17,6 @@ export default function DoTaskDialog({
 }: DoTaskDialogProps) {
   const [open, setOpen] = React.useState(false);
   const [selectedUser, setSelectedUser] = React.useState({});
-  console.log("dev ~ DoTaskDialog ~ selectedUser:", selectedUser);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -42,8 +41,9 @@ export default function DoTaskDialog({
                 setSelectedUser(e.target.value);
               }}
               className="doTaskSelect"
+              defaultValue={""}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select a user
               </option>
               {users.map((user: any) => (
@@ -56,14 +56,6 @@ export default function DoTaskDialog({
             <button type="submit">Save</button>
             {/* </Dialog.Close> */}
           </form>
-
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          ></div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
