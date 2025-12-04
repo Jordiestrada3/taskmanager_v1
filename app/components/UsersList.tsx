@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import DeleteButton from "./DeleteButon";
 import { deleteTask, deleteUser } from "@/utils/utils";
-import EditTaskForm from "./EditTaskForm";
-import EditUserForm from "./EditUserForm";
+import EditTaskForm from "./EditTaskDialog";
+import EditUserForm from "./EditUserDialog";
 import { User } from "@/types/user";
 
 type UsersListProps = {

@@ -1,16 +1,16 @@
 "use client";
 
 import { Dialog } from "radix-ui";
-import UserForm from "./UserForm";
-import { updateUser } from "@/utils/utils";
-import { User } from "@/types/user";
+import TaskForm from "./TaskForm";
+import { updateTask } from "@/utils/utils";
+import { Task } from "@/types/task";
 
-type EditUserFormProps = {
-  user: User;
+type EditTaskDialogProps = {
+  task: Task;
   children: any;
 };
 
-export default function EditUserForm({ user, children }: EditUserFormProps) {
+export default function EditTaskDialog({ task, children }: EditTaskDialogProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -18,12 +18,12 @@ export default function EditUserForm({ user, children }: EditUserFormProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Edit User</Dialog.Title>
+          <Dialog.Title className="DialogTitle">Edit profile</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Make changes to this user here. Click save when you're done.
+            Make changes to your profile here. Click save when you're done.
           </Dialog.Description>
 
-          <UserForm buttonText={"Edit User"} action={(formData: FormData) => updateUser(user, formData)} user={user} />
+          <TaskForm buttonText={"Edit Task"} action={(formData: FormData) => updateTask(task, formData)} task={task} />
 
           <div
             style={{
