@@ -2,8 +2,8 @@
 
 import React from "react";
 import UsersList from "./UsersList";
-import FormTrigger from "./FormTrigger/FormTrigger";
 import { User } from "@/types/user";
+import CreateItemDialog from "./FormTrigger/CreateItemDialog";
 
 type UsersPageContentsProps = {
   users: User[];
@@ -22,7 +22,7 @@ export default function UsersPageContents({ users }: UsersPageContentsProps) {
       }}
     >
       <UsersList users={users} isEditing={isEditing} />
-      <FormTrigger />
+      <CreateItemDialog type={"user"} />
 
       <button className="editButton" onClick={() => setIsEditing(!isEditing)}>
         EDIT

@@ -1,20 +1,40 @@
 "use client";
 import React from "react";
-import { createUser } from "../../utils/utils";
 import { User } from "@/types/user";
 
-type UserFormProps ={
+type UserFormProps = {
   buttonText: string;
   action: (formData: FormData) => void | Promise<void>;
-  user?: User;  
-}
+  user?: User;
+  onSuccess?: () => void;
+};
 
-export default function UserForm({buttonText, action, user}: UserFormProps) {
+export default function UserForm({
+  buttonText,
+  action,
+  user,
+  onSuccess,
+}: UserFormProps) {
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); //the form does not reload the page
+    const formData = new FormData(e.currentTarget);
+    await action(formData);
+    if (onSuccess) onSuccess();
+  };
+
   return (
-    <form className="customForm" action={action}>
+    <form className="customForm" onSubmit={handleSubmit}>
       <fieldset>
         <label>Name</label>
-        <input type="text" name="name" placeholder="User Name" defaultValue={user?.name} required />
+        <input
+          type="text"
+          name="name"
+          placeholder="User Name"
+          defaultValue={user?.name}
+          required
+        />
       </fieldset>
       <button type="submit">{buttonText}</button>
     </form>

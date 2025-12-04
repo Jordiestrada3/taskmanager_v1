@@ -2,8 +2,8 @@
 
 import React from "react";
 import TasksList from "./TasksList";
-import FormTrigger from "./FormTrigger/FormTrigger";
 import { Task } from "@/types/task";
+import CreateItemDialog from "./FormTrigger/CreateItemDialog";
 
 type TasksPageContentsProps = {
   tasks: Task[];
@@ -23,7 +23,7 @@ export default function TasksPageContents({ tasks }: TasksPageContentsProps) {
       }}
     >
       <TasksList tasks={tasks} isEditing={isEditing} />
-      <FormTrigger />
+      <CreateItemDialog type={"task"} />
 
       <button className="editButton" onClick={() => setIsEditing(!isEditing)}>
         EDIT

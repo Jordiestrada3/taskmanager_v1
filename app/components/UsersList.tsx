@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import DeleteButton from "./DeleteButon";
-import { deleteTask, deleteUser } from "@/utils/utils";
-import EditTaskForm from "./EditTaskDialog";
+import { deleteUser } from "@/utils/utils";
 import EditUserForm from "./EditUserDialog";
 import { User } from "@/types/user";
 
@@ -14,7 +11,6 @@ type UsersListProps = {
 };
 
 export default function UsersList({ users, isEditing }: UsersListProps) {
-
   return (
     <div
       style={{

@@ -52,9 +52,7 @@ export default function DoTaskDialog({
                 </option>
               ))}
             </select>
-            {/* <Dialog.Close asChild> */}
             <button type="submit">Save</button>
-            {/* </Dialog.Close> */}
           </form>
         </Dialog.Content>
       </Dialog.Portal>
