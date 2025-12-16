@@ -13,15 +13,14 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model User {
-  id            Int     @id @default(autoincrement())
-  name          String
-  score         Int
+  id    String @id @default(uuid())
+  name  String
+  score Int
 }
 
-model Task{
-  id            Int     @id @default(autoincrement())
+model Task {
+  id            String @id @default(uuid())
   name          String
   description   String
   score         Int
