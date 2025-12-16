@@ -15,32 +15,16 @@ datasource db {
 
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id            Int     @id @default(autoincrement())
+  name          String
+  score         Int
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
+model Task{
+  id            Int     @id @default(autoincrement())
+  name          String
+  description   String
+  score         Int
+  frequencyTime BigInt
+  lastTimeDone  BigInt
 }
-
-// export type Task = {
-//   id: string;
-//   name: string;
-//   score: number;
-//   frequencyTime: number;
-//   lastTimeDone: number;
-// };
-
-
-// export type User = {
-//   id: string;
-//   name: string;
-//   score: number;
-// };

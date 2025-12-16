@@ -1,10 +1,10 @@
 import { PrismaClient, Prisma } from "../app/generated/prisma/client";
-import { PrismaPg } from '@prisma/adapter-pg'
-import 'dotenv/config'
+import { PrismaPg } from "@prisma/adapter-pg";
+import "dotenv/config";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
-})
+});
 
 const prisma = new PrismaClient({
   adapter,
@@ -12,40 +12,27 @@ const prisma = new PrismaClient({
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: "Alice",
-    email: "alice@prisma.io",
-    posts: {
-      create: [
-        {
-          title: "Join the Prisma Discord",
-          content: "https://pris.ly/discord",
-          published: true,
-        },
-        {
-          title: "Prisma on YouTube",
-          content: "https://pris.ly/youtube",
-        },
-      ],
-    },
+    name: "John Cena",
+    score: 0,
   },
+];
+
+const taskData: Prisma.TaskCreateInput[] = [
   {
-    name: "Bob",
-    email: "bob@prisma.io",
-    posts: {
-      create: [
-        {
-          title: "Follow Prisma on Twitter",
-          content: "https://www.twitter.com/prisma",
-          published: true,
-        },
-      ],
-    },
+    name: "Escombrar la casa",
+    score: 3,
+    description: "Netejar tota la casa amb escombra i recollir la brutícia.",
+    frequencyTime: 86400000, // in ms (24 hours)
+    lastTimeDone: Date.now() - 259200000, // timestamp 3 days ago from now
   },
 ];
 
 export async function main() {
-  for (const u of userData) {
-    await prisma.user.create({ data: u });
+  for (const user of userData) {
+    await prisma.user.create({ data: user });
+  }
+  for (const task of taskData) {
+    await prisma.task.create({ data: task });
   }
 }
 
