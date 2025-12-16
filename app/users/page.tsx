@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import UsersPageContents from "../components/UsersPageContents";
 import prisma from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic'; // To show latest data in the build
+
 export default async function UsersPage() {
   const users: User[] = await getUsers();
 
