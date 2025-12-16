@@ -15,8 +15,6 @@ export default function UserForm({
   user,
   onSuccess,
 }: UserFormProps) {
-
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); //the form does not reload the page
     const formData = new FormData(e.currentTarget);

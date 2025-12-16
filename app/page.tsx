@@ -1,15 +1,9 @@
 import PendingTasksList from "./components/PendingTasksList";
-import { getTasks, getUsers } from "../utils/utils";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { User } from "@/types/user";
-import { Task } from "@/types/task";
 import prisma from "@/lib/prisma";
 
 export default async function Home() {
-  const tasks: Task[] = await getTasks();
-  const users: User[] = await getUsers();
-
   const prismaUsers = await prisma.user.findMany();
   const prismaTasks = await prisma.task.findMany();
 

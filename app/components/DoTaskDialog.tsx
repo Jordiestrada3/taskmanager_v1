@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Dialog } from "radix-ui";
-import { markPrismaTaskAsDone, markTaskAsDone } from "@/utils/utils";
+import { markPrismaTaskAsDone } from "@/utils/utils";
 import { Task } from "@/types/task";
 import { User } from "@/types/user";
 

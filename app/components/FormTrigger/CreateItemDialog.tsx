@@ -5,7 +5,7 @@ import "./DialogStyle.css";
 import { PlusIcon } from "@radix-ui/react-icons";
 import UserForm from "../UserForm";
 import TaskForm from "../TaskForm";
-import { createPrismaTask, createPrismaUser, createTask, createUser } from "@/utils/utils";
+import { createPrismaTask, createPrismaUser } from "@/utils/utils";
 
 type CreateItemDialogProps = {
   type: "user" | "task";
