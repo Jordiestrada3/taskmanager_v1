@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import path from "path";
 import { Task } from "@/types/task";
 import { User } from "@/types/user";
+import prisma from "@/lib/prisma";
 
 export async function getTasks() {
   const dataDirectory = path.join(process.cwd(), "data");
@@ -32,6 +33,25 @@ export async function createTask(formData: FormData) {
   };
   const newTasksData = [...tasksData, newTask];
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
+  revalidatePath("/");
+}
+
+export async function createPrismaTask(formData: FormData) {
+  const name = formData.get("name");
+  const score = Number(formData.get("score"));
+  const frequencyTime = 
+    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000
+   // Convert days to milliseconds and puts BigInt type to be compatible with Prisma
+  const lastTimeDone = Date.now() - Number(frequencyTime); // Set to pending automaticly
+  await prisma.task.create({
+    data: {
+      name: name as string,
+      description: "hola soc una prova", // Temporary description
+      score: score as number,
+      frequencyTime: frequencyTime as number,
+      lastTimeDone: lastTimeDone as number,
+    },
+  });
   revalidatePath("/");
 }
 
