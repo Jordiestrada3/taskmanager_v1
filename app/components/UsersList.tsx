@@ -1,7 +1,7 @@
 "use client";
 
 import DeleteButton from "./DeleteButon";
-import { deleteUser } from "@/utils/utils";
+import { deletePrismaUser, deleteUser } from "@/utils/utils";
 import EditUserForm from "./EditUserDialog";
 import { User } from "@/types/user";
 
@@ -25,7 +25,7 @@ export default function UsersList({ users, isEditing }: UsersListProps) {
         <div key={index} className="customCard">
           {isEditing ? (
             <>
-              <DeleteButton item={user} action={() => deleteUser(user)} />
+              <DeleteButton item={user} action={() => deletePrismaUser(user)} />
               <EditUserForm user={user} key={index}>
                 <div>
                   <h1>{user.name}</h1>

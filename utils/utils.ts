@@ -39,17 +39,17 @@ export async function createTask(formData: FormData) {
 export async function createPrismaTask(formData: FormData) {
   const name = formData.get("name");
   const score = Number(formData.get("score"));
-  const frequencyTime = 
-    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000
-   // Convert days to milliseconds and puts BigInt type to be compatible with Prisma
+  const frequencyTime =
+    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000;
+  // Convert days to milliseconds
   const lastTimeDone = Date.now() - Number(frequencyTime); // Set to pending automaticly
   await prisma.task.create({
     data: {
-      name: name as string,
-      description: "hola soc una prova", // Temporary description
-      score: score as number,
-      frequencyTime: frequencyTime as number,
-      lastTimeDone: lastTimeDone as number,
+      name: String(name),
+      description: "hola soc una prova",
+      score,
+      frequencyTime: BigInt(frequencyTime), // Prisma BigInt type
+      lastTimeDone: BigInt(lastTimeDone), // Prisma BigInt type
     },
   });
   revalidatePath("/");
@@ -60,6 +60,15 @@ export async function deleteTask(task: Task) {
   const tasksData = await getTasks();
   const newTasksData = tasksData.filter((item: Task) => item.id !== task.id);
   await fs.writeFile(filePath, JSON.stringify(newTasksData, null, 2));
+  revalidatePath("/");
+}
+
+export async function deletePrismaTask(task: Task) {
+  await prisma.task.delete({
+    where: {
+      id: task.id,
+    },
+  });
   revalidatePath("/");
 }
 
@@ -92,6 +101,29 @@ export async function updateTask(task: Task, formData: FormData) {
   revalidatePath("/");
 }
 
+export async function updatePrismaTask(task: Task, formData: FormData) {
+  "use server";
+
+  const taskId = task.id;
+  const name = formData.get("name") as string;
+  const score = Number(formData.get("score"));
+  const frequencyTime =
+    Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000;
+
+  await prisma.task.update({
+    where: {
+      id: taskId,
+    },
+    data: {
+      name,
+      score,
+      frequencyTime: BigInt(frequencyTime),
+    },
+  });
+
+  revalidatePath("/");
+}
+
 export async function getUsers() {
   const dataDirectory = path.join(process.cwd(), "data");
   const filePath = path.join(dataDirectory, "users.json");
@@ -117,11 +149,33 @@ export async function createUser(formData: FormData) {
   revalidatePath("/");
 }
 
+export async function createPrismaUser(formData: FormData) {
+  const name = formData.get("name");
+  const score = Number(formData.get("score"));
+
+  await prisma.user.create({
+    data: {
+      name: String(name),
+      score,
+    },
+  });
+  revalidatePath("/");
+}
+
 export async function deleteUser(user: User) {
   const filePath = path.join(process.cwd(), "data", "users.json");
   const usersData = await getUsers();
   const newUsersData = usersData.filter((item: User) => item.id !== user.id);
   await fs.writeFile(filePath, JSON.stringify(newUsersData, null, 2));
+  revalidatePath("/");
+}
+
+export async function deletePrismaUser(user: User) {
+  await prisma.user.delete({
+    where: {
+      id: user.id,
+    },
+  });
   revalidatePath("/");
 }
 
@@ -145,6 +199,24 @@ export async function updateUser(user: User, formData: FormData) {
   });
 
   await fs.writeFile(filePath, JSON.stringify(updatedUsers, null, 2));
+
+  revalidatePath("/");
+}
+
+export async function updatePrismaUser(user: User, formData: FormData) {
+  "use server";
+
+  const userId = user.id;
+  const name = formData.get("name") as string;
+
+  await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      name,
+    },
+  });
 
   revalidatePath("/");
 }
@@ -175,5 +247,30 @@ export async function markTaskAsDone(task: Task, userId: string) {
   });
 
   await fs.writeFile(usersFilePath, JSON.stringify(updatedUsers, null, 2));
+  revalidatePath("/");
+}
+
+export async function markPrismaTaskAsDone(task: Task, userId: string) {
+  "use server";
+  const taskId = task.id;
+
+  await prisma.task.update({
+    where: {
+      id: taskId,
+    },
+    data: {
+      lastTimeDone: Date.now(),
+    },
+  });
+
+  await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      score: { increment: task.score },
+    },
+  });
+
   revalidatePath("/");
 }

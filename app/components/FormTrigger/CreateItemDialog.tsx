@@ -5,7 +5,7 @@ import "./DialogStyle.css";
 import { PlusIcon } from "@radix-ui/react-icons";
 import UserForm from "../UserForm";
 import TaskForm from "../TaskForm";
-import { createPrismaTask, createTask, createUser } from "@/utils/utils";
+import { createPrismaTask, createPrismaUser, createTask, createUser } from "@/utils/utils";
 
 type CreateItemDialogProps = {
   type: "user" | "task";
@@ -34,7 +34,7 @@ export default function CreateItemDialog({ type }: CreateItemDialogProps) {
           {type === "user" && (
             <UserForm
               buttonText={"Add User"}
-              action={createUser}
+              action={createPrismaUser}
               onSuccess={() => setIsOpen(false)}
             />
           )}

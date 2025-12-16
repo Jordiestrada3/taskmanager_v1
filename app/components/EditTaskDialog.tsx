@@ -2,7 +2,7 @@
 
 import { Dialog } from "radix-ui";
 import TaskForm from "./TaskForm";
-import { updateTask } from "@/utils/utils";
+import { updatePrismaTask, updateTask } from "@/utils/utils";
 import { Task } from "@/types/task";
 
 type EditTaskDialogProps = {
@@ -23,7 +23,7 @@ export default function EditTaskDialog({ task, children }: EditTaskDialogProps) 
             Make changes to your profile here. Click save when you're done.
           </Dialog.Description>
 
-          <TaskForm buttonText={"Edit Task"} action={(formData: FormData) => updateTask(task, formData)} task={task} />
+          <TaskForm buttonText={"Edit Task"} action={(formData: FormData) => updatePrismaTask(task, formData)} task={task} />
 
           <div
             style={{

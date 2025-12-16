@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Dialog } from "radix-ui";
-import { markTaskAsDone } from "@/utils/utils";
+import { markPrismaTaskAsDone, markTaskAsDone } from "@/utils/utils";
 import { Task } from "@/types/task";
 import { User } from "@/types/user";
 
@@ -34,7 +34,7 @@ export default function DoTaskDialog({
           <form
             className="customForm"
             action={() => {
-              markTaskAsDone(task, selectedUser), setOpen(false);
+              markPrismaTaskAsDone(task, selectedUser), setOpen(false);
             }}
           >
             <select

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import DeleteButton from "./DeleteButon";
-import { deleteTask } from "@/utils/utils";
+import { deletePrismaTask, deleteTask } from "@/utils/utils";
 import EditTaskForm from "./EditTaskDialog";
 import { Task } from "@/types/task";
 
@@ -29,7 +29,7 @@ export default function TasksList({ tasks, isEditing }: TasksListProps) {
         <div key={index} className="customCard">
           {isEditing ? (
             <>
-              <DeleteButton item={task} action={() => deleteTask(task)} />
+              <DeleteButton item={task} action={() => deletePrismaTask(task)} />
               <EditTaskForm task={task} key={index}>
                 <div>
                   <h1>{task.name}</h1>

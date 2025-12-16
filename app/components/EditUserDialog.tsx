@@ -2,7 +2,7 @@
 
 import { Dialog } from "radix-ui";
 import UserForm from "./UserForm";
-import { updateUser } from "@/utils/utils";
+import { updatePrismaUser, updateUser } from "@/utils/utils";
 import { User } from "@/types/user";
 
 type EditUserDialogProps = {
@@ -23,7 +23,7 @@ export default function EditUserDialog({ user, children }: EditUserDialogProps) 
             Make changes to this user here. Click save when you're done.
           </Dialog.Description>
 
-          <UserForm buttonText={"Edit User"} action={(formData: FormData) => updateUser(user, formData)} user={user} />
+          <UserForm buttonText={"Edit User"} action={(formData: FormData) => updatePrismaUser(user, formData)} user={user} />
 
           <div
             style={{
