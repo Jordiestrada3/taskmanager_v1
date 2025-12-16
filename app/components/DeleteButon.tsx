@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Dialog } from "radix-ui";
 import "./FormTrigger/DialogStyle.css";
 

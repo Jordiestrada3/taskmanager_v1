@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import DeleteButton from "./DeleteButon";
-import { deletePrismaTask, deleteTask } from "@/utils/utils";
+import { deletePrismaTask } from "@/utils/utils";
 import EditTaskForm from "./EditTaskDialog";
 import { Task } from "@/types/task";
 
