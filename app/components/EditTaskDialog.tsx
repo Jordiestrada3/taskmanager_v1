@@ -2,7 +2,7 @@
 
 import { Dialog } from "radix-ui";
 import TaskForm from "./TaskForm";
-import { updatePrismaTask } from "@/utils/utils";
+import { updatePrismaTask, updateTask } from "@/utils/utils";
 import { Task } from "@/types/task";
 
 type EditTaskDialogProps = {
@@ -10,10 +10,7 @@ type EditTaskDialogProps = {
   children: any;
 };
 
-export default function EditTaskDialog({
-  task,
-  children,
-}: EditTaskDialogProps) {
+export default function EditTaskDialog({ task, children }: EditTaskDialogProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -26,11 +23,7 @@ export default function EditTaskDialog({
             Make changes to your profile here. Click save when you're done.
           </Dialog.Description>
 
-          <TaskForm
-            buttonText={"Edit Task"}
-            action={(formData: FormData) => updatePrismaTask(task, formData)}
-            task={task}
-          />
+          <TaskForm buttonText={"Edit Task"} action={(formData: FormData) => updatePrismaTask(task, formData)} task={task} />
 
           <div
             style={{

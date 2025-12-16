@@ -1,7 +1,7 @@
 "use client";
 
 import DeleteButton from "./DeleteButon";
-import { deletePrismaUser } from "@/utils/utils";
+import { deletePrismaUser, deleteUser } from "@/utils/utils";
 import EditUserForm from "./EditUserDialog";
 import { User } from "@/types/user";
 
