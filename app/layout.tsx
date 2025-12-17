@@ -20,8 +20,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
   },
-
-  themeColor: "#000000",
 };
 
 export const viewport = {
