@@ -18,7 +18,6 @@ export default async function TasksPage() {
     <div className="site">
       <Header />
       <main>
-        <h1>Tasks Page</h1>
         <TasksPageContents tasks={formattedTasks} />
       </main>
       <Footer />

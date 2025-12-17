@@ -17,7 +17,6 @@ export default async function Home() {
     <div className="site">
       <Header />
       <main>
-        <h1>Pending Tasks Page</h1>
         <PendingTasksList tasks={formattedTasks} users={prismaUsers} />
       </main>
       <Footer />

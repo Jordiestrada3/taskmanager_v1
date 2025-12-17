@@ -12,7 +12,6 @@ export default async function UsersPage() {
     <div className="site">
       <Header />
       <main>
-        <h1>Users Page</h1>
         <UsersPageContents users={prismaUsers} />
       </main>
       <Footer />
