@@ -4,6 +4,7 @@ import { Task } from "@/types/task";
 import DoTaskDialog from "./DoTaskDialog";
 import "./FormTrigger/DialogStyle.css";
 import { User } from "@/types/user";
+import PendingTaskCard from "./PendingTaskCard";
 
 type PendingTasksListProps = {
   tasks: Task[];
@@ -26,26 +27,30 @@ export default function PendingTasksList({
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "20px",
+        gap: "10px",
         justifyContent: "center",
         width: "100%",
       }}
     >
       {pendingTasks.map((task, index) => (
-        <DoTaskDialog key={index} task={task} users={users}>
-          <div className="customCard">
-            <div>
-              <h1>{task.name}</h1>
-              <p>Score: {task.score}</p>
-              <p>
-                Last Time Done:
-                {new Date(task.lastTimeDone).toLocaleDateString()} (
-                {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}
-                days ago)
-              </p>
-            </div>
-          </div>
-        </DoTaskDialog>
+
+
+
+        <PendingTaskCard key={index} task={task} />
+        // <DoTaskDialog key={index} task={task} users={users}>
+        //   <div className="customCard">
+        //     <div>
+        //       <h1>{task.name}</h1>
+        //       <p>Score: {task.score}</p>
+        //       <p>
+        //         Last Time Done:
+        //         {new Date(task.lastTimeDone).toLocaleDateString()} (
+        //         {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}
+        //         days ago)
+        //       </p>
+        //     </div>
+        //   </div>
+        // </DoTaskDialog>
       ))}
     </div>
   );
