@@ -21,6 +21,7 @@ export default function PendingTasksList({
   const pendingTasks = tasks.filter((task) => {
     return now - task.lastTimeDone > task.frequencyTime;
   });
+  console.log("dev ~ PendingTasksList ~ pendingTasks:", pendingTasks)
 
   return (
     <div
@@ -33,24 +34,8 @@ export default function PendingTasksList({
       }}
     >
       {pendingTasks.map((task, index) => (
+        <PendingTaskCard key={index} task={task} users={users} />
 
-
-
-        <PendingTaskCard key={index} task={task} />
-        // <DoTaskDialog key={index} task={task} users={users}>
-        //   <div className="customCard">
-        //     <div>
-        //       <h1>{task.name}</h1>
-        //       <p>Score: {task.score}</p>
-        //       <p>
-        //         Last Time Done:
-        //         {new Date(task.lastTimeDone).toLocaleDateString()} (
-        //         {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}
-        //         days ago)
-        //       </p>
-        //     </div>
-        //   </div>
-        // </DoTaskDialog>
       ))}
     </div>
   );

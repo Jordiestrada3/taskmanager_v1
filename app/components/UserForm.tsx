@@ -23,7 +23,7 @@ export default function UserForm({
   };
 
   return (
-    <form className="customForm" onSubmit={handleSubmit}>
+    <form className="custom-form" onSubmit={handleSubmit}>
       <fieldset>
         <label>Name</label>
         <input

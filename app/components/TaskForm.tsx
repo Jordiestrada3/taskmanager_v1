@@ -25,7 +25,7 @@ export default function TaskForm({
   const oneDay = 86400000; //milliseconds in a day
 
   return (
-    <form className="customForm" onSubmit={handleSubmit}>
+    <form className="custom-form" onSubmit={handleSubmit}>
       <fieldset>
         <label>Name</label>
         <input

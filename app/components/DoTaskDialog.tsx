@@ -32,7 +32,7 @@ export default function DoTaskDialog({
             Assign the task to someone and click save when you're done.
           </Dialog.Description>
           <form
-            className="customForm"
+            className="custom-form"
             action={() => {
               markPrismaTaskAsDone(task, selectedUser), setOpen(false);
             }}
