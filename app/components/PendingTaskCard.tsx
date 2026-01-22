@@ -7,10 +7,11 @@ import { markPrismaTaskAsDone } from "@/utils/utils";
 type PendingTaskCardProps = {
   task: Task;
   users: User[];
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-export default function PendingTaskCard({ task, users }: PendingTaskCardProps) {
-  const [open, setOpen] = useState(false);
+export default function PendingTaskCard({ task, users, isOpen, onToggle }: PendingTaskCardProps) {
   const [selectedUser, setSelectedUser] = React.useState("");
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -18,13 +19,14 @@ export default function PendingTaskCard({ task, users }: PendingTaskCardProps) {
   const now = Date.now();
 
   return (
-    <div onClick={() => setOpen(true)} className="customCard">
+    <div className="customCard">
       <div
         style={{
           display: "flex",
           alignContent: "center",
           justifyContent: "space-between",
         }}
+        onClick={onToggle} 
       >
         <div>
           <h1 style={{ lineHeight: 1.4 }}>{task.name}</h1>
@@ -39,7 +41,7 @@ export default function PendingTaskCard({ task, users }: PendingTaskCardProps) {
       <div
         className="card-extra"
         style={{
-          height: open ? `${contentRef.current?.scrollHeight}px` : "0px",
+          height: isOpen ? `${contentRef.current?.scrollHeight}px` : "0px",
         }}
       >
         <div ref={contentRef} >
@@ -47,7 +49,7 @@ export default function PendingTaskCard({ task, users }: PendingTaskCardProps) {
           <form
             className="custom-form"
             action={() => {
-              (markPrismaTaskAsDone(task, selectedUser), setOpen(false));
+              (markPrismaTaskAsDone(task, selectedUser));
             }}
             style={{margin: 0, padding: 2}}
           >
