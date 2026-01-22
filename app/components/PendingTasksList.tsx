@@ -16,7 +16,6 @@ export default function PendingTasksList({
   tasks,
   users,
 }: PendingTasksListProps) {
-  console.log("dev ~ PendingTasksList ~ tasks:", tasks);
 
     const [openId, setOpenId] = useState('');
   
@@ -25,7 +24,6 @@ export default function PendingTasksList({
   const pendingTasks = tasks.filter((task) => {
     return now - task.lastTimeDone > task.frequencyTime;
   });
-  console.log("dev ~ PendingTasksList ~ pendingTasks:", pendingTasks)
 
   return (
     <div

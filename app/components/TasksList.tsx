@@ -11,7 +11,6 @@ type TasksListProps = {
 };
 
 export default function TasksList({ tasks, isEditing }: TasksListProps) {
-  console.log("dev ~ TasksList ~ tasks:", tasks);
 
   return (
     <div
