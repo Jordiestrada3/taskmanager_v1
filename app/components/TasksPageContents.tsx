@@ -20,7 +20,7 @@ export default function TasksPageContents({ tasks }: TasksPageContentsProps) {
         flexDirection: "column",
         width: "100%",
         position: "relative",
-      }}
+      }} 
     >
       <TasksList tasks={tasks} isEditing={isEditing} />
       <CreateItemDialog type={"task"} />

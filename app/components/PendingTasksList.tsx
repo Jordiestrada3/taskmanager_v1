@@ -16,9 +16,8 @@ export default function PendingTasksList({
   tasks,
   users,
 }: PendingTasksListProps) {
+  const [openId, setOpenId] = useState("");
 
-    const [openId, setOpenId] = useState('');
-  
   const now = Date.now();
 
   const pendingTasks = tasks.filter((task) => {
@@ -36,11 +35,13 @@ export default function PendingTasksList({
       }}
     >
       {pendingTasks.map((task, index) => (
-        <PendingTaskCard key={index} task={task} users={users} isOpen={openId === task.id}
-          onToggle={() =>
-            setOpenId(openId === task.id ? '' : task.id)
-          }/>
-
+        <PendingTaskCard
+          key={index}
+          task={task}
+          users={users}
+          isOpen={openId === task.id}
+          onToggle={() => setOpenId(openId === task.id ? "" : task.id)}
+        />
       ))}
     </div>
   );

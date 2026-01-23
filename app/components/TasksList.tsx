@@ -4,6 +4,8 @@ import DeleteButton from "./DeleteButon";
 import { deletePrismaTask } from "@/utils/utils";
 import EditTaskForm from "./EditTaskDialog";
 import { Task } from "@/types/task";
+import TaskCard from "./TaskCard";
+import { useState } from "react";
 
 type TasksListProps = {
   tasks: Task[];
@@ -12,44 +14,26 @@ type TasksListProps = {
 
 export default function TasksList({ tasks, isEditing }: TasksListProps) {
 
+    const [openId, setOpenId] = useState("");
+  
   return (
     <div
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "20px",
+        gap: "10px",
         justifyContent: "center",
         width: "100%",
       }}
     >
       {tasks.map((task, index) => (
-        <div key={index} className="customCard">
-          {isEditing ? (
-            <>
-              <DeleteButton item={task} action={() => deletePrismaTask(task)} />
-              <EditTaskForm task={task} key={index}>
-                <div>
-                  <h1>{task.name}</h1>
-                  <p>Score: {task.score}</p>
-                  <p>
-                    Frequency Time (days):{" "}
-                    {task.frequencyTime / (24 * 60 * 60 * 1000)}
-                  </p>
-                </div>
-              </EditTaskForm>
-            </>
-          ) : (
-            <div>
-              <h1>{task.name}</h1>
-              <p>Score: {task.score}</p>
-              <p>
-                Frequency Time (days):{" "}
-                {task.frequencyTime / (24 * 60 * 60 * 1000)}
-              </p>
-            </div>
-          )}
-        </div>
+          <TaskCard
+            key={index}
+            task={task}
+            isOpen={openId === task.id}
+            onToggle={() => setOpenId(openId === task.id ? "" : task.id)}
+          />
       ))}
-    </div>
+    </div>  
   );
 }
