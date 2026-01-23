@@ -16,7 +16,7 @@ export default async function TasksPage() {
 
   return (
     <div className="site">
-      <Header />
+      <Header add />
       <main>
         <TasksPageContents tasks={formattedTasks} />
       </main>

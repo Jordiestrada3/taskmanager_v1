@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --footer-height: 80px;
+  --footer-height: 70px;
 }
 
 @theme inline {
@@ -100,7 +100,7 @@ h1 {
 .custom-form button {
   border-radius: 5px;
   padding: 10px 0;
-  background-color: #60583F;
+  background-color: #60583f;
   font-size: 16px;
   cursor: pointer;
   color: white;
@@ -123,39 +123,65 @@ h1 {
   background-color: white;
 }
 
+.custom-header {
+  background-color: #ffffff;
+  color: black;
+  padding: 1.5em 0 0.75em 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 80px;
+}
+
+.header-add-button {
+  position: absolute;
+  top: 42px;
+  right: 30px;
+  cursor: pointer;
+}
+
 .custom-footer {
   height: var(--footer-height);
   margin-top: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
-  padding: 0.5em 0 1.5em 0;
+  padding: 0.75em 0 1.25em 0;
   text-align: center;
-  border-top: 1px solid #eaeaea;
-  gap: 20px;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100vw;
-  background-color: white;
+  background-color: #49452c;
+  color: white;
+  align-items: center;
 }
 
-.footer-item {
-  color: black;
-  background-color: rgb(249, 248, 247);
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
+.footer-hex {
+  position: relative;
+  display: inline-block;
+  align-self: center;
 }
 
-.footer-item:active {
-  /* box-shadow: 0 0 0 2px rgb(70, 143, 70); */
-  background-color: rgb(241, 236, 233);
+.footer-hexagon-svg {
+  width: 110px;
+  height: 110px;
 }
 
-.active-footer-item {
-  background-color: rgb(220, 207, 195);
+.footer-hexagon-text {
+  position: absolute;
+  inset: 0; /* top/right/bottom/left = 0 */
+  display: flex;
+  align-items: center;
+  /* align-self: center; */
+  font-size: 32px;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
 }
 
 main {
@@ -262,15 +288,4 @@ main {
   font-weight: bold;
   padding: 0;
   margin: 0;
-}
-
-.hexagon-text h1 {
-  margin: 0;
-  padding: 0;
-  /* border-width: 1px; */
-}
-
-.hexagon-text p {
-  margin: 0;
-  padding: 0;
 }

@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <div className="site">
       <Header />
-      <main style={{margin:10}}>
+      <main style={{ margin: 10 }}>
         <PendingTasksList tasks={formattedTasks} users={prismaUsers} />
       </main>
       <Footer />
