@@ -2,6 +2,9 @@ import { Task } from "@/types/task";
 import React, { useRef } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import ScoreHex from "./ScoreHex";
+import EditTaskDialog from "./EditTaskDialog";
+import { deletePrismaTask } from "@/utils/utils";
+import DeleteButton from "./DeleteButon";
 
 type PendingTaskCardProps = {
   task: Task;
@@ -58,34 +61,38 @@ export default function PendingTaskCard({
             justifyContent: "space-between",
           }}
         >
-          <button
-            style={{
-              color: "white",
-              width: "48%",
-              height: 50,
-              backgroundColor: "blue",
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Pencil />
-          </button>
-          <button
-            style={{
-              color: "white",
-              width: "48%",
-              height: 50,
-              backgroundColor: "red",
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Trash2 />
-          </button>
+          <EditTaskDialog task={task}>
+            <button
+              style={{
+                color: "white",
+                width: "48%",
+                height: 50,
+                backgroundColor: "blue",
+                borderRadius: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <Pencil />
+            </button>
+          </EditTaskDialog>
+          <DeleteButton action={() => deletePrismaTask(task)} item={task}>
+            <button
+              style={{
+                color: "white",
+                width: "48%",
+                height: 50,
+                backgroundColor: "red",
+                borderRadius: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <Trash2 />
+            </button>
+          </DeleteButton>
         </div>
       </div>
     </div>

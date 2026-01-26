@@ -15,7 +15,6 @@ export default function EditUserDialog({
   user,
   children,
 }: EditUserDialogProps) {
-
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,24 +26,14 @@ export default function EditUserDialog({
         <Dialog.Content className="DialogContent">
           <Dialog.Title className="DialogTitle">Edit User</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Make changes to this user here. Click save when you're done.
+            Make changes to the selected user here. Click save when you're done.
           </Dialog.Description>
-
           <UserForm
             buttonText={"Edit User"}
             action={(formData: FormData) => updatePrismaUser(user, formData)}
             user={user}
             onSuccess={() => setIsOpen(false)}
           />
-
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          >
-          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

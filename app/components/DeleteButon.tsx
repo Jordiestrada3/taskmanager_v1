@@ -9,12 +9,14 @@ type DeleteButtonProps = {
   children: React.ReactNode;
 };
 
-export default function DeleteButton({ item, action, children }: DeleteButtonProps) {
+export default function DeleteButton({
+  item,
+  action,
+  children,
+}: DeleteButtonProps) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger asChild>
-        {children}
-      </Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
@@ -24,14 +26,31 @@ export default function DeleteButton({ item, action, children }: DeleteButtonPro
             Are you sure you want to delete this item? This action cannot be
             undone.
           </Dialog.Description>
+          <div
+            style={{
+              justifyContent: "center",
+              display: "flex",
+              gap: 10,
+              marginTop: 25,
+            }}
+          >
+            <Dialog.Close asChild>
+              <button
+                style={{ width: "48%", textAlign: "center"  }}
+                className="dialogDeleteButton"
+                onClick={() => action(item)}
+              >
+                Delete
+              </button>
+            </Dialog.Close>
 
-          <Dialog.Close asChild>
-            <button className="dialogDeleteButton" onClick={() => action(item)}>Delete</button>
-          </Dialog.Close>
-
-          <Dialog.Close asChild>
-            <button className="dialogCancelButton" onClick={() => console.log("Cancel")}>Cancel</button>
-          </Dialog.Close>
+            <Dialog.Close asChild>
+              <button style={{ width: "48%", textAlign: "center" }}
+               className="dialogCancelButton">
+                Cancel
+              </button>
+            </Dialog.Close>
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

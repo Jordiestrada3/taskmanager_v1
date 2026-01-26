@@ -4,45 +4,36 @@ import { Dialog } from "radix-ui";
 import TaskForm from "./TaskForm";
 import { updatePrismaTask } from "@/utils/utils";
 import { Task } from "@/types/task";
+import { useState } from "react";
 
 type EditTaskDialogProps = {
   task: Task;
-  children: any;
+  children: React.ReactNode;
 };
 
 export default function EditTaskDialog({
   task,
   children,
 }: EditTaskDialogProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Edit profile</Dialog.Title>
+          <Dialog.Title className="DialogTitle">Edit Task</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Make changes to your profile here. Click save when you're done.
+            Make changes to the selected task here. Click save when you're done.
           </Dialog.Description>
-
           <TaskForm
             buttonText={"Edit Task"}
             action={(formData: FormData) => updatePrismaTask(task, formData)}
             task={task}
+            onSuccess={() => setIsOpen(false)}
           />
-
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          >
-            <Dialog.Close asChild>
-              <button className="Button green">Save changes</button>
-            </Dialog.Close>
-          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
