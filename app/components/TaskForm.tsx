@@ -37,6 +37,16 @@ export default function TaskForm({
         />
       </fieldset>
       <fieldset>
+        <label>Description</label>
+        <input
+          type="text"
+          name="description"
+          placeholder="Task Description"
+          defaultValue={task?.description}
+          required
+        />
+      </fieldset>
+      <fieldset>
         <label>Score</label>
         <input
           type="number"

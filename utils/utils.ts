@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 
 export async function createPrismaTask(formData: FormData) {
   const name = formData.get("name");
+  const description = formData.get("description");
   const score = Number(formData.get("score"));
   const frequencyTime =
     Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000;
@@ -14,7 +15,7 @@ export async function createPrismaTask(formData: FormData) {
   await prisma.task.create({
     data: {
       name: String(name),
-      description: "hola soc una prova",
+      description: String(description),
       score,
       frequencyTime: BigInt(frequencyTime), // Prisma BigInt type
       lastTimeDone: BigInt(lastTimeDone), // Prisma BigInt type
@@ -37,6 +38,7 @@ export async function updatePrismaTask(task: Task, formData: FormData) {
 
   const taskId = task.id;
   const name = formData.get("name") as string;
+  const description = formData.get("description") as string;
   const score = Number(formData.get("score"));
   const frequencyTime =
     Number(formData.get("frequencyTime")) * 24 * 60 * 60 * 1000;
@@ -47,6 +49,7 @@ export async function updatePrismaTask(task: Task, formData: FormData) {
     },
     data: {
       name,
+      description,
       score,
       frequencyTime: BigInt(frequencyTime),
     },

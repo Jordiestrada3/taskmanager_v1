@@ -9,10 +9,9 @@ import { useState } from "react";
 
 type TasksListProps = {
   tasks: Task[];
-  isEditing: boolean;
 };
 
-export default function TasksList({ tasks, isEditing }: TasksListProps) {
+export default function TasksList({ tasks }: TasksListProps) {
 
     const [openId, setOpenId] = useState("");
   

@@ -9,27 +9,24 @@ import { createPrismaTask, createPrismaUser } from "@/utils/utils";
 
 type CreateItemDialogProps = {
   type: "user" | "task";
+  children: React.ReactNode;
 };
 
-export default function CreateItemDialog({ type }: CreateItemDialogProps) {
+export default function CreateItemDialog({ type, children }: CreateItemDialogProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <button className="Button violet">
-          <PlusIcon
-            style={{ color: "white", fontSize: 60, width: 30, height: 30 }}
-          />
-        </button>
+        {children}
       </Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Create Item</Dialog.Title>
+          <Dialog.Title className="DialogTitle">Create {type}</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Create a new item using the form below.
+            Create a new {type} using the form below.
           </Dialog.Description>
           {type === "user" && (
             <UserForm

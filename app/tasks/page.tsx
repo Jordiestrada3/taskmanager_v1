@@ -1,11 +1,12 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import TasksPageContents from "../components/TasksPageContents";
+import TasksList from "../components/TasksList";
 import prisma from "@/lib/prisma";
 
 export const dynamic = "force-dynamic"; // To show latest data in the build
 
 export default async function TasksPage() {
+
   const prismaTasks = await prisma.task.findMany();
 
   const formattedTasks = prismaTasks.map((task) => ({
@@ -16,9 +17,9 @@ export default async function TasksPage() {
 
   return (
     <div className="site">
-      <Header add />
+      <Header createType="task" />
       <main style={{ margin: 10 }}>
-        <TasksPageContents tasks={formattedTasks} />
+        <TasksList tasks={formattedTasks}/>
       </main>
       <Footer />
     </div>

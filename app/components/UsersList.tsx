@@ -6,10 +6,9 @@ import { useState } from "react";
 
 type UsersListProps = {
   users: User[];
-  isEditing: boolean;
 };
 
-export default function UsersList({ users, isEditing }: UsersListProps) {
+export default function UsersList({ users }: UsersListProps) {
   const [openId, setOpenId] = useState("");
 
   return (
@@ -32,16 +31,4 @@ export default function UsersList({ users, isEditing }: UsersListProps) {
       ))}
     </div>
   );
-}
-
-{
-  /* <>
-              <DeleteButton item={user} action={() => deletePrismaUser(user)} />
-              <EditUserForm user={user} key={index}>
-                <div>
-                  <h1>{user.name}</h1>
-                  <p>Score: {user.score}</p>
-                </div>
-              </EditUserForm>
-            </> */
 }
