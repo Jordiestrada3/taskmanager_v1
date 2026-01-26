@@ -4,18 +4,22 @@ import { Dialog } from "radix-ui";
 import UserForm from "./UserForm";
 import { updatePrismaUser } from "@/utils/utils";
 import { User } from "@/types/user";
+import { useState } from "react";
 
 type EditUserDialogProps = {
   user: User;
-  children: any;
+  children: React.ReactNode;
 };
 
 export default function EditUserDialog({
   user,
   children,
 }: EditUserDialogProps) {
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
@@ -30,6 +34,7 @@ export default function EditUserDialog({
             buttonText={"Edit User"}
             action={(formData: FormData) => updatePrismaUser(user, formData)}
             user={user}
+            onSuccess={() => setIsOpen(false)}
           />
 
           <div
@@ -39,9 +44,6 @@ export default function EditUserDialog({
               justifyContent: "flex-end",
             }}
           >
-            <Dialog.Close asChild>
-              <button className="Button green">Save changes</button>
-            </Dialog.Close>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

@@ -6,13 +6,14 @@ import "./FormTrigger/DialogStyle.css";
 type DeleteButtonProps = {
   item: object;
   action: Function;
+  children: React.ReactNode;
 };
 
-export default function DeleteButton({ item, action }: DeleteButtonProps) {
+export default function DeleteButton({ item, action, children }: DeleteButtonProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="deleteButton">X</button>
+        {children}
       </Dialog.Trigger>
 
       <Dialog.Portal>

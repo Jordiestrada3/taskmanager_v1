@@ -1,9 +1,11 @@
 import { Task } from "@/types/task";
 import { User } from "@/types/user";
 import React, { useRef, useState } from "react";
-import { Pencil, Trash2 } from "lucide-react";
+import { Delete, Pencil, Trash2 } from "lucide-react";
 import ScoreHex from "./ScoreHex";
-import { markPrismaTaskAsDone } from "@/utils/utils";
+import EditUserForm from "./EditUserDialog";
+import { deletePrismaUser, markPrismaTaskAsDone } from "@/utils/utils";
+import DeleteButton from "./DeleteButon";
 
 type PendingTaskCardProps = {
   user: User;
@@ -28,7 +30,7 @@ export default function PendingTaskCard({
         style={{
           display: "flex",
           alignContent: "center",
-          alignItems:'center',
+          alignItems: "center",
           justifyContent: "space-between",
         }}
         onClick={onToggle}
@@ -50,34 +52,38 @@ export default function PendingTaskCard({
             justifyContent: "space-between",
           }}
         >
-          <button
-            style={{
-              color: "white",
-              width: "48%",
-              height: 50,
-              backgroundColor: "blue",
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Pencil />
-          </button>
-          <button
-            style={{
-              color: "white",
-              width: "48%",
-              height: 50,
-              backgroundColor: "red",
-              borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <Trash2 />
-          </button>
+          <EditUserForm user={user}>
+            <button
+              style={{
+                color: "white",
+                width: "48%",
+                height: 50,
+                backgroundColor: "blue",
+                borderRadius: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <Pencil />
+            </button>
+          </EditUserForm>
+          <DeleteButton item={user} action={() => deletePrismaUser(user)}>
+            <button
+              style={{
+                color: "white",
+                width: "48%",
+                height: 50,
+                backgroundColor: "red",
+                borderRadius: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <Trash2 />
+            </button>
+          </DeleteButton>
         </div>
       </div>
     </div>
