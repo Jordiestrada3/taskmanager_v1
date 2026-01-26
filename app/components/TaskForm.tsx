@@ -38,8 +38,7 @@ export default function TaskForm({
       </fieldset>
       <fieldset>
         <label>Description</label>
-        <input
-          type="text"
+        <textarea
           name="description"
           placeholder="Task Description"
           defaultValue={task?.description}

@@ -3,13 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --footer-height: 70px;
+  --footer-height: 90px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -27,7 +27,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter;
 }
 
 h1 {
@@ -60,7 +60,7 @@ h1 {
   flex-direction: column;
   max-width: 400px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #60583f;
   padding: 5px;
   border-width: 0;
   gap: 15px;
@@ -75,8 +75,8 @@ h1 {
 
 .custom-form label {
   font-size: 15px;
-  color: rgb(70, 143, 70);
-  width: 90px;
+  color: #60583f;
+  width: 150px;
   text-align: right;
 }
 
@@ -88,14 +88,33 @@ h1 {
   border-radius: 4px;
   padding: 0 10px;
   font-size: 15px;
-  color: rgb(70, 143, 70);
-  box-shadow: 0 0 0 1px rgb(70, 143, 70);
+  color: #60583f;
+  box-shadow: 0 0 0 1px #60583f;
   height: 35px;
 }
 
 .custom-form input:focus {
-  box-shadow: 0 0 0 2px rgb(70, 143, 70);
+  box-shadow: 0 0 0 2px #60583f;
 }
+
+.custom-form textarea {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 15px;
+  color: #60583f;
+  box-shadow: 0 0 0 1px #60583f;
+  height: 100px;
+}
+
+.custom-form textarea:focus {
+  box-shadow: 0 0 0 2px #60583f;
+}
+
+
 
 .custom-form button {
   border-radius: 5px;
@@ -117,8 +136,8 @@ h1 {
   border-radius: 4px;
   margin: 10px 0 0 0;
   font-size: 15px;
-  color: rgb(70, 143, 70);
-  box-shadow: 0 0 0 1px rgb(70, 143, 70);
+  color: #60583f;
+  box-shadow: 0 0 0 1px black;
   height: 35px;
   background-color: white;
 }
@@ -151,7 +170,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  padding: 0.75em 0 1.25em 0;
+  padding: 0.25em 0 2.25em 0;
   text-align: center;
   position: fixed;
   left: 0;
@@ -197,18 +216,7 @@ main {
   flex-direction: column;
 }
 
-.deleteButton {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  float: right;
-  text-align: center;
-}
+
 
 .dialogDeleteButton {
   background-color: red;

@@ -58,7 +58,7 @@ export default function PendingTaskCard({
                 color: "white",
                 width: "48%",
                 height: 50,
-                backgroundColor: "blue",
+                backgroundColor: "#72694c",
                 borderRadius: 10,
                 justifyContent: "center",
                 alignItems: "center",
