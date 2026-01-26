@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter} from "next/font/google";
 import "./globals.css";
+import { maximum } from "zod/mini";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -30,6 +31,8 @@ export const metadata: Metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
