@@ -1,16 +1,18 @@
 import { Task } from "@/types/task";
-import React, { useRef } from "react";
+import { User } from "@/types/user";
+import React, { useRef, useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import ScoreHex from "./ScoreHex";
+import { markPrismaTaskAsDone } from "@/utils/utils";
 
 type PendingTaskCardProps = {
-  task: Task;
+  user: User;
   isOpen: boolean;
   onToggle: () => void;
 };
 
 export default function PendingTaskCard({
-  task,
+  user,
   isOpen,
   onToggle,
 }: PendingTaskCardProps) {
@@ -26,24 +28,14 @@ export default function PendingTaskCard({
         style={{
           display: "flex",
           alignContent: "center",
-          alignItems: "center",
+          alignItems:'center',
           justifyContent: "space-between",
         }}
         onClick={onToggle}
       >
-        <div>
-          <h1 style={{ lineHeight: 1.4 }}>{task.name}</h1>
-          <p style={{ lineHeight: 1.4 }}>
-            Done {Math.trunc((now - task.lastTimeDone) / (24 * 60 * 60 * 1000))}{" "}
-            days ago
-          </p>
-        </div>
-        <ScoreHex score={task.score} />
+        <h1 style={{ lineHeight: 1.4 }}>{user.name}</h1>
+        <ScoreHex score={user.score} />
       </div>
-      <p style={{ paddingTop: 15, fontWeight: 600, fontSize: 15 }}>
-        {task.description}
-      </p>
-
       <div
         className="card-extra"
         style={{

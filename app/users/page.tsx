@@ -11,7 +11,7 @@ export default async function UsersPage() {
   return (
     <div className="site">
       <Header />
-      <main>
+      <main style={{ margin: 10 }}>
         <UsersPageContents users={prismaUsers} />
       </main>
       <Footer />
