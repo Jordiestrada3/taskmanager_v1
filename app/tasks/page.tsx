@@ -32,12 +32,13 @@ export default async function TasksPage() {
               display: "flex",
               justifyContent: "center",
               marginBottom: 10,
+              gap: 5,
               backgroundColor: "#cac0a0",
               boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
             }}
           >
             <AlertTriangle />
-            This page is only for editing the task list.
+            <p>This page is only for editing the task list.</p>
           
         </div>
         <TasksList tasks={formattedTasks} />

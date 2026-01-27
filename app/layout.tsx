@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter} from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { maximum } from "zod/mini";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -19,17 +18,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Task Manager",
+  title: "BeHive",
   description: "A simple task management app to organize your to-dos.",
 
   appleWebApp: {
+    title: "BeHive",
     capable: true,
     statusBarStyle: "black-translucent",
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
+  themeColor: "white",
   width: "device-width",
+  viewportFit: "cover",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
@@ -44,6 +46,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
