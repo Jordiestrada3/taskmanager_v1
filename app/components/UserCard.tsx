@@ -1,4 +1,3 @@
-import { Task } from "@/types/task";
 import { User } from "@/types/user";
 import React, { useRef, useState } from "react";
 import { Delete, Pencil, Trash2 } from "lucide-react";
@@ -6,18 +5,15 @@ import ScoreHex from "./ScoreHex";
 import EditUserForm from "./EditUserDialog";
 import { deletePrismaUser, markPrismaTaskAsDone } from "@/utils/utils";
 import DeleteButton from "./DeleteButon";
+import EditUserDialog from "./EditUserDialog";
 
-type PendingTaskCardProps = {
+type UserCardProps = {
   user: User;
   isOpen: boolean;
   onToggle: () => void;
 };
 
-export default function PendingTaskCard({
-  user,
-  isOpen,
-  onToggle,
-}: PendingTaskCardProps) {
+export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
   const [selectedUser, setSelectedUser] = React.useState("");
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -47,43 +43,59 @@ export default function PendingTaskCard({
         <div
           ref={contentRef}
           style={{
-            padding: "25px 0 5px 0",
-            display: "flex",
-            justifyContent: "space-between",
+            paddingTop: 20,
           }}
         >
-          <EditUserForm user={user}>
-            <button
-              style={{
-                color: "white",
-                width: "48%",
-                height: 50,
-                backgroundColor: "#72694c",
-                borderRadius: 10,
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <Pencil />
-            </button>
-          </EditUserForm>
-          <DeleteButton item={user} action={() => deletePrismaUser(user)}>
-            <button
-              style={{
-                color: "white",
-                width: "48%",
-                height: 50,
-                backgroundColor: "red",
-                borderRadius: 10,
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <Trash2 />
-            </button>
-          </DeleteButton>
+          <hr
+            style={{
+              opacity: 0.3,
+              border: "none",
+              borderTop: "1px solid #94a3b8",
+              width: "75%",
+              margin: "0 auto",
+            }}
+          />
+          <div
+            ref={contentRef}
+            style={{
+              padding: "25px 0 5px 0",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <EditUserDialog user={user}>
+              <button
+                style={{
+                  color: "white",
+                  width: "48%",
+                  height: 50,
+                  backgroundColor: "#94a3b8",
+                  borderRadius: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <Pencil />
+              </button>
+            </EditUserDialog>
+            <DeleteButton action={() => deletePrismaUser(user)} item={user}>
+              <button
+                style={{
+                  color: "white",
+                  width: "48%",
+                  height: 50,
+                  backgroundColor: "#e57373",
+                  borderRadius: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <Trash2 />
+              </button>
+            </DeleteButton>
+          </div>
         </div>
       </div>
     </div>

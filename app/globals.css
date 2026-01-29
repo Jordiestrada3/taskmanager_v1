@@ -32,10 +32,10 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  color: #171717;
+  color: #212121;
   font-family: Inter;
   min-height: 100vh;
 }
@@ -59,7 +59,7 @@ body {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   height: calc(var(--header-height) + env(safe-area-inset-top));
 }
 
@@ -71,7 +71,9 @@ body {
 }
 
 main {
-  padding-top: calc(var(--header-height) + env(safe-area-inset-top)); /* To prevent content being hidden behind the header */
+  padding-top: calc(
+    var(--header-height) + env(safe-area-inset-top)
+  ); /* To prevent content being hidden behind the header */
   padding-bottom: calc(
     var(--footer-height) + env(safe-area-inset-bottom)
   ); /* To prevent content being hidden behind the footer */
@@ -91,10 +93,11 @@ main {
   padding-top: 0.25em;
   padding-bottom: env(safe-area-inset-bottom);
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: fixed;
   bottom: 0;
   width: 100vw;
-  background-color: #49452c;
+  background-color: #37474f;
   color: white;
   align-items: center;
 }
@@ -108,6 +111,7 @@ main {
 .footer-hexagon-svg {
   width: 100px;
   height: 100px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 .footer-hexagon-text {
@@ -130,11 +134,12 @@ h1 {
 }
 
 .customCard {
-  background-color: #f9f3c9;
+  background-color: #ffffff;
   padding: 15px 25px 15px 25px;
   border-radius: 15px;
   color: black;
   width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .card-extra {
@@ -198,13 +203,14 @@ h1 {
 }
 
 .custom-form textarea:focus {
-  box-shadow: 0 0 0 2px #60583f;
+  box-shadow: 0 0 0 2px #212121;
 }
 
 .custom-form button {
   border-radius: 5px;
   padding: 10px 0;
-  background-color: #60583f;
+  background-color: #ffb300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   font-size: 16px;
   cursor: pointer;
   color: white;
@@ -218,46 +224,20 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-width: 1px;
+  border-color: rgb(148 163 184 / 0.3);
   border-radius: 4px;
   margin: 10px 0 0 0;
   font-size: 15px;
-  color: #60583f;
+  color: #212121;
   box-shadow: 0 0 0 1px black;
   height: 35px;
   background-color: white;
 }
 
-.dialogDeleteButton {
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.dialogDeleteButton:hover {
-  background-color: darkred;
-}
-
-.dialogCancelButton {
-  background-color: gray;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.dialogCancelButton:hover {
-  background-color: darkgray;
-}
-
 .editButton {
   position: fixed;
-  background-color: blue;
+  background-color: #94a3b8;
   color: white;
   border: none;
   border-radius: 50%;
@@ -308,4 +288,5 @@ h1 {
   font-weight: bold;
   padding: 0;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

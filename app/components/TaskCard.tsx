@@ -6,17 +6,17 @@ import EditTaskDialog from "./EditTaskDialog";
 import { deletePrismaTask } from "@/utils/utils";
 import DeleteButton from "./DeleteButon";
 
-type PendingTaskCardProps = {
+type TaskCardProps = {
   task: Task;
   isOpen: boolean;
   onToggle: () => void;
 };
 
-export default function PendingTaskCard({
+export default function TaskCard({
   task,
   isOpen,
   onToggle,
-}: PendingTaskCardProps) {
+}: TaskCardProps) {
   const [selectedUser, setSelectedUser] = React.useState("");
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -56,43 +56,59 @@ export default function PendingTaskCard({
         <div
           ref={contentRef}
           style={{
-            padding: "25px 0 5px 0",
-            display: "flex",
-            justifyContent: "space-between",
+            paddingTop: 20,
           }}
         >
-          <EditTaskDialog task={task}>
-            <button
-              style={{
-                color: "white",
-                width: "48%",
-                height: 50,
-                backgroundColor: "#72694c",
-                borderRadius: 10,
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <Pencil />
-            </button>
-          </EditTaskDialog>
-          <DeleteButton action={() => deletePrismaTask(task)} item={task}>
-            <button
-              style={{
-                color: "white",
-                width: "48%",
-                height: 50,
-                backgroundColor: "red",
-                borderRadius: 10,
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <Trash2 />
-            </button>
-          </DeleteButton>
+          <hr
+            style={{
+              opacity: 0.3,
+              border: "none",
+              borderTop: "1px solid #94a3b8",
+              width: "75%",
+              margin: "0 auto",
+            }}
+          />
+          <div
+            ref={contentRef}
+            style={{
+              padding: "25px 0 5px 0",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <EditTaskDialog task={task}>
+              <button
+                style={{
+                  color: "white",
+                  width: "48%",
+                  height: 50,
+                  backgroundColor: "#94a3b8",
+                  borderRadius: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <Pencil />
+              </button>
+            </EditTaskDialog>
+            <DeleteButton action={() => deletePrismaTask(task)} item={task}>
+              <button
+                style={{
+                  color: "white",
+                  width: "48%",
+                  height: 50,
+                  backgroundColor: "#e57373",
+                  borderRadius: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <Trash2 />
+              </button>
+            </DeleteButton>
+          </div>
         </div>
       </div>
     </div>
