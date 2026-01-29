@@ -34,15 +34,29 @@ export default function PendingTasksList({
         width: "100%",
       }}
     >
-      {pendingTasks.map((task, index) => (
-        <PendingTaskCard
-          key={index}
-          task={task}
-          users={users}
-          isOpen={openId === task.id}
-          onToggle={() => setOpenId(openId === task.id ? "" : task.id)}
-        />
-      ))}
+      {pendingTasks.length === 0 ? (
+        <p
+          style={{
+            padding: 20,
+            fontSize: 18,
+            color: 'rgb(148 163 184 / 0.7)',
+            fontWeight: 600,
+            textAlign: "center",
+          }}
+        >
+          Everything is buzzing! You have no pending tasks in your Hive.
+        </p>
+      ) : (
+        pendingTasks.map((task, index) => (
+          <PendingTaskCard
+            key={index}
+            task={task}
+            users={users}
+            isOpen={openId === task.id}
+            onToggle={() => setOpenId(openId === task.id ? "" : task.id)}
+          />
+        ))
+      )}
     </div>
   );
 }
