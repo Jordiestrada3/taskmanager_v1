@@ -2,6 +2,7 @@
   "name": "BeHive",
   "short_name": "BeHive",
   "start_url": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "/icon-192.png",
