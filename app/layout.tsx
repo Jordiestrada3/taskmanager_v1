@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BeHive",
   description: "A simple task management app to organize your to-dos.",
+  icons: {
+    apple: "/BeHive192.png",
+    icon: "/BeHive192.png",
+  },
 
   appleWebApp: {
     title: "BeHive",
