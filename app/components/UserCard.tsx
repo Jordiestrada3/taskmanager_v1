@@ -32,7 +32,7 @@ export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
         onClick={onToggle}
       >
         <h1 style={{ lineHeight: 1.4 }}>{user.name}</h1>
-        <ScoreHex score={user.score} />
+        <ScoreHex score={user.score} hexColor="#ffb300" />
       </div>
       <div
         className="card-extra"

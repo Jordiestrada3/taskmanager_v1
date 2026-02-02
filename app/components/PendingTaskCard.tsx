@@ -55,7 +55,7 @@ const handleTaskDone = async (task: Task, selectedUser: string) => {
             days ago
           </p>
         </div>
-        <ScoreHex score={task.score} />
+        <ScoreHex score={task.score} hexColor="#ffb300" />
       </div>
 
       <div

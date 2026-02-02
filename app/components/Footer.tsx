@@ -29,7 +29,6 @@ export default function Footer() {
             <p className="footer-hexagon-text">
               <ClipboardCheck />
             </p>
-            {/* <img src={'hexagon.svg'} style={{fill:'#616161', width:'100px', height:'100px'}} /> */}
           </div>
         </Link>
       </div>

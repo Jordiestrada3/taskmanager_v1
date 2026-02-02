@@ -41,7 +41,7 @@ export default function TaskCard({
             days ago
           </p>
         </div>
-        <ScoreHex score={task.score} />
+        <ScoreHex score={task.score} hexColor="#ffb300" />
       </div>
       <p style={{ paddingTop: 15, fontWeight: 600, fontSize: 15 }}>
         {task.description}
