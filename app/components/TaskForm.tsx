@@ -15,11 +15,21 @@ export default function TaskForm({
   task,
   onSuccess,
 }: TaskFormProps) {
+  const [isPending, setIsPending] = React.useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); //the form does not reload the page
-    const formData = new FormData(e.currentTarget);
-    await action(formData);
-    if (onSuccess) onSuccess();
+    if (isPending) return; //prevent multiple submissions
+    setIsPending(true);
+    try {
+      e.preventDefault(); //the form does not reload the page
+      const formData = new FormData(e.currentTarget);
+      await action(formData);
+      if (onSuccess) onSuccess();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   const oneDay = 86400000; //milliseconds in a day
@@ -65,7 +75,13 @@ export default function TaskForm({
           required
         />
       </fieldset>
-      <button type="submit">{buttonText}</button>
+      {isPending ? (
+        <button style={{ backgroundColor: "#d39401" }} disabled>
+          Loading...
+        </button>
+      ) : (
+        <button type="submit">{buttonText}</button>
+      )}
     </form>
   );
 }
