@@ -37,7 +37,7 @@ export default function DeleteButton({
             <Dialog.Close asChild>
               <button
                 style={{ width: "48%", textAlign: "center"  }}
-                className="dialogDeleteButton"
+                className="delete-confirmation-delete-button"
                 onClick={() => action(item)}
               >
                 Delete
@@ -46,7 +46,7 @@ export default function DeleteButton({
 
             <Dialog.Close asChild>
               <button style={{ width: "48%", textAlign: "center" }}
-               className="dialogCancelButton">
+               className="delete-confirmation-cancel-button">
                 Cancel
               </button>
             </Dialog.Close>

@@ -235,6 +235,25 @@ h1 {
   background-color: white;
 }
 
+.delete-confirmation-cancel-button {
+  background-color: #94a3b8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.delete-confirmation-delete-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .editButton {
   position: fixed;
   background-color: #94a3b8;
