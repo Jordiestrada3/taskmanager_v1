@@ -3,6 +3,7 @@ import { User } from "@/types/user";
 import React, { useRef, useState } from "react";
 import ScoreHex from "./ScoreHex";
 import { markPrismaTaskAsDone } from "@/utils/utils";
+import { set } from "zod";
 
 type PendingTaskCardProps = {
   task: Task;
@@ -11,8 +12,27 @@ type PendingTaskCardProps = {
   onToggle: () => void;
 };
 
-export default function PendingTaskCard({ task, users, isOpen, onToggle }: PendingTaskCardProps) {
-  const [selectedUser, setSelectedUser] = React.useState("");
+export default function PendingTaskCard({
+  task,
+  users,
+  isOpen,
+  onToggle,
+}: PendingTaskCardProps) {
+  const [selectedUserId, setSelectedUserId] = React.useState("");
+  const [isPending, setIsPending] = useState(false);
+
+const handleTaskDone = async (task: Task, selectedUser: string) => {
+  if (isPending) return;
+  setIsPending(true);
+  try {
+    await markPrismaTaskAsDone(task, selectedUser);
+    setSelectedUserId("");
+  } catch (error) {
+    console.error("Error marking task as done:", error);
+  } finally {
+      setIsPending(false);
+  }
+};
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +46,7 @@ export default function PendingTaskCard({ task, users, isOpen, onToggle }: Pendi
           alignContent: "center",
           justifyContent: "space-between",
         }}
-        onClick={onToggle} 
+        onClick={onToggle}
       >
         <div>
           <h1 style={{ lineHeight: 1.4 }}>{task.name}</h1>
@@ -44,19 +64,22 @@ export default function PendingTaskCard({ task, users, isOpen, onToggle }: Pendi
           height: isOpen ? `${contentRef.current?.scrollHeight}px` : "0px",
         }}
       >
-        <div ref={contentRef} >
-          <p style={{paddingTop: 10, fontWeight: 600, fontSize: 15}}>{task.description}</p>
+        <div ref={contentRef}>
+          <p style={{ paddingTop: 10, fontWeight: 600, fontSize: 15 }}>
+            {task.description}
+          </p>
           <form
             className="custom-form"
-            action={() => {
-              (markPrismaTaskAsDone(task, selectedUser));
+            onSubmit={async (e) => {
+              e.preventDefault(); 
+              await handleTaskDone(task, selectedUserId);
             }}
-            style={{margin: 0, padding: 2}}
+            style={{ margin: 0, padding: 2 }}
           >
             <select
               name="user"
-              value={selectedUser}
-              onChange={(e) => setSelectedUser(e.target.value)}
+              value={selectedUserId}
+              onChange={(e) => setSelectedUserId(e.target.value)}
               required
             >
               <option value="" disabled>
@@ -68,7 +91,11 @@ export default function PendingTaskCard({ task, users, isOpen, onToggle }: Pendi
                 </option>
               ))}
             </select>
-            <button type="submit">Done!</button>
+            {isPending ? (
+              <button style={{backgroundColor:'#d39401'}} disabled>Loading...</button>
+            ) : (
+              <button type="submit">Done!</button>
+            )}
           </form>
         </div>
       </div>
