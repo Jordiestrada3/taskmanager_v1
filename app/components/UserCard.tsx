@@ -21,7 +21,7 @@ export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
   const now = Date.now();
 
   return (
-    <div className="customCard">
+    <div className="custom-card">
       <div
         style={{
           display: "flex",
@@ -64,34 +64,12 @@ export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
             }}
           >
             <EditUserDialog user={user}>
-              <button
-                style={{
-                  color: "white",
-                  width: "48%",
-                  height: 50,
-                  backgroundColor: "#94a3b8",
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
+              <button className="edit-item-button">
                 <Pencil />
               </button>
             </EditUserDialog>
             <DeleteButton action={() => deletePrismaUser(user)} item={user}>
-              <button
-                style={{
-                  color: "white",
-                  width: "48%",
-                  height: 50,
-                  backgroundColor: "#e57373",
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
+              <button className="delete-item-button">
                 <Trash2 />
               </button>
             </DeleteButton>

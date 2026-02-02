@@ -41,7 +41,7 @@ export default function DoTaskDialog({
               name="user"
               value={selectedUser}
               onChange={(e) => setSelectedUser(e.target.value)}
-              className="doTaskSelect"
+              className="do-task-select"
             >
               <option value="" disabled>
                 Select a user

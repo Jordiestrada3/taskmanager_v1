@@ -39,7 +39,7 @@ const handleTaskDone = async (task: Task, selectedUser: string) => {
   const now = Date.now();
 
   return (
-    <div className="customCard">
+    <div className="custom-card">
       <div
         style={{
           display: "flex",

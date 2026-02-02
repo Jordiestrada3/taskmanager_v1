@@ -70,6 +70,11 @@ body {
   cursor: pointer;
 }
 
+.header-add-button:active {
+  transform: scale(0.6);
+  transition: 0.2s ease-in-out;
+}
+
 main {
   padding-top: calc(
     var(--header-height) + env(safe-area-inset-top)
@@ -102,10 +107,21 @@ main {
   align-items: center;
 }
 
+.footer-icon:active {
+  transform: scale(0.8);
+  transition: 0.2s ease-out;
+}
+
 .footer-hex {
   position: relative;
   display: inline-block;
   align-self: center;
+  /* transform: all 0.4s ease-in-out; */
+}
+
+.footer-hex:active {
+  transform: scale(0.95);
+  transition: 0.2s ease-out;
 }
 
 .footer-hexagon-svg {
@@ -119,7 +135,6 @@ main {
   inset: 0; /* top/right/bottom/left = 0 */
   display: flex;
   align-items: center;
-  /* align-self: center; */
   font-size: 32px;
   justify-content: center;
   color: white;
@@ -133,13 +148,19 @@ h1 {
   font-weight: 700;
 }
 
-.customCard {
+.custom-card {
   background-color: #ffffff;
   padding: 15px 25px 15px 25px;
   border-radius: 15px;
   color: black;
   width: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.custom-card:active:not(:has(button:active, select:active, input:active)) {
+  /* Prevents conflict with button/input/select active states */
+  transform: scale(0.98);
+  transition: 0.1s ease-in-out;
 }
 
 .card-extra {
@@ -219,6 +240,11 @@ h1 {
   width: 100%;
 }
 
+.custom-form button:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in-out;
+}
+
 .custom-form select {
   width: 100%;
   display: inline-flex;
@@ -235,6 +261,38 @@ h1 {
   background-color: white;
 }
 
+.edit-item-button {
+  color: white;
+  width: 48%;
+  height: 50px;
+  background-color: #94a3b8;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.edit-item-button:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in-out;
+}
+
+.delete-item-button {
+  color: white;
+  width: 48%;
+  height: 50px;
+  background-color: #ef4444;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.delete-item-button:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in-out;
+}
+
 .delete-confirmation-cancel-button {
   background-color: #94a3b8;
   color: white;
@@ -244,6 +302,12 @@ h1 {
   font-weight: 600;
   cursor: pointer;
 }
+
+.delete-confirmation-cancel-button:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in-out;
+}
+
 .delete-confirmation-delete-button {
   background-color: #ef4444;
   color: white;
@@ -254,22 +318,12 @@ h1 {
   cursor: pointer;
 }
 
-.editButton {
-  position: fixed;
-  background-color: #94a3b8;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  bottom: 180px;
-  right: 20px;
+.delete-confirmation-delete-button:active {
+  transform: scale(0.95);
+  transition: 0.1s ease-in-out;
 }
 
-.doTaskSelect {
+.do-task-select {
   width: 100%;
   display: inline-flex;
   align-items: center;

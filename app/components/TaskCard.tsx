@@ -24,7 +24,7 @@ export default function TaskCard({
   const now = Date.now();
 
   return (
-    <div className="customCard">
+    <div className="custom-card">
       <div
         style={{
           display: "flex",

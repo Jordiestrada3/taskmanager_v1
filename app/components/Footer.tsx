@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="custom-footer">
-      <div>
+      <div className="footer-icon">
         <Link href="/tasks" rel="Tasks">
           <List />
         </Link>
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </Link>
       </div>
-      <div>
+      <div className="footer-icon">
         <Link href="/users" rel="Users">
           <Users />
         </Link>
