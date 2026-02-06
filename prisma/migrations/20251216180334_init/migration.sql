@@ -2,7 +2,7 @@
   Warnings:
 
   - The primary key for the `Task` table will be changed. If it partially fails, the table could be left without primary key constraint.
-  - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
+  - The primary key for the `Member` table will be changed. If it partially fails, the table could be left without primary key constraint.
 
 */
 -- AlterTable
@@ -13,8 +13,8 @@ ADD CONSTRAINT "Task_pkey" PRIMARY KEY ("id");
 DROP SEQUENCE "Task_id_seq";
 
 -- AlterTable
-ALTER TABLE "User" DROP CONSTRAINT "User_pkey",
+ALTER TABLE "Member" DROP CONSTRAINT "Member_pkey",
 ALTER COLUMN "id" DROP DEFAULT,
 ALTER COLUMN "id" SET DATA TYPE TEXT,
-ADD CONSTRAINT "User_pkey" PRIMARY KEY ("id");
-DROP SEQUENCE "User_id_seq";
+ADD CONSTRAINT "Member_pkey" PRIMARY KEY ("id");
+DROP SEQUENCE "Member_id_seq";

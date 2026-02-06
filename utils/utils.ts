@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { Task } from "@/types/task";
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 import prisma from "@/lib/prisma";
 
 export async function createPrismaTask(formData: FormData) {
@@ -58,11 +58,11 @@ export async function updatePrismaTask(task: Task, formData: FormData) {
   revalidatePath("/");
 }
 
-export async function createPrismaUser(formData: FormData) {
+export async function createPrismaMember(formData: FormData) {
   const name = formData.get("name");
   const score = Number(formData.get("score"));
 
-  await prisma.user.create({
+  await prisma.member.create({
     data: {
       name: String(name),
       score,
@@ -71,24 +71,24 @@ export async function createPrismaUser(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function deletePrismaUser(user: User) {
-  await prisma.user.delete({
+export async function deletePrismaMember(member: Member) {
+  await prisma.member.delete({
     where: {
-      id: user.id,
+      id: member.id,
     },
   });
   revalidatePath("/");
 }
 
-export async function updatePrismaUser(user: User, formData: FormData) {
+export async function updatePrismaMember(member: Member, formData: FormData) {
   "use server";
 
-  const userId = user.id;
+  const memberId = member.id;
   const name = formData.get("name") as string;
 
-  await prisma.user.update({
+  await prisma.member.update({
     where: {
-      id: userId,
+      id: memberId,
     },
     data: {
       name,
@@ -98,7 +98,7 @@ export async function updatePrismaUser(user: User, formData: FormData) {
   revalidatePath("/");
 }
 
-export async function markPrismaTaskAsDone(task: Task, userId: string) {
+export async function markPrismaTaskAsDone(task: Task, memberId: string) {
   "use server";
   const taskId = task.id;
 
@@ -111,9 +111,9 @@ export async function markPrismaTaskAsDone(task: Task, userId: string) {
     },
   });
 
-  await prisma.user.update({
+  await prisma.member.update({
     where: {
-      id: userId,
+      id: memberId,
     },
     data: {
       score: { increment: task.score },

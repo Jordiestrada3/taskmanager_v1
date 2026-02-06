@@ -1,20 +1,20 @@
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 import React, { useRef, useState } from "react";
 import { Delete, Pencil, Trash2 } from "lucide-react";
 import ScoreHex from "./ScoreHex";
-import EditUserForm from "./EditUserDialog";
-import { deletePrismaUser, markPrismaTaskAsDone } from "@/utils/utils";
+import EditMemberForm from "./EditMemberDialog";
+import { deletePrismaMember, markPrismaTaskAsDone } from "@/utils/utils";
 import DeleteButton from "./DeleteButon";
-import EditUserDialog from "./EditUserDialog";
+import EditMemberDialog from "./EditMemberDialog";
 
-type UserCardProps = {
-  user: User;
+type MemberCardProps = {
+  member: Member;
   isOpen: boolean;
   onToggle: () => void;
 };
 
-export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
-  const [selectedUser, setSelectedUser] = React.useState("");
+export default function MemberCard({ member, isOpen, onToggle }: MemberCardProps) {
+  const [selectedMember, setSelectedMember] = React.useState("");
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -31,8 +31,8 @@ export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
         }}
         onClick={onToggle}
       >
-        <h1 style={{ lineHeight: 1.4 }}>{user.name}</h1>
-        <ScoreHex score={user.score} hexColor="#ffb300" />
+        <h1 style={{ lineHeight: 1.4 }}>{member.name}</h1>
+        <ScoreHex score={member.score} hexColor="#ffb300" />
       </div>
       <div
         className="card-extra"
@@ -63,12 +63,12 @@ export default function UserCard({ user, isOpen, onToggle }: UserCardProps) {
               justifyContent: "space-between",
             }}
           >
-            <EditUserDialog user={user}>
+            <EditMemberDialog member={member}>
               <button className="edit-item-button">
                 <Pencil />
               </button>
-            </EditUserDialog>
-            <DeleteButton action={() => deletePrismaUser(user)} item={user}>
+            </EditMemberDialog>
+            <DeleteButton action={() => deletePrismaMember(member)} item={member}>
               <button className="delete-item-button">
                 <Trash2 />
               </button>

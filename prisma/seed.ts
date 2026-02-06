@@ -10,7 +10,7 @@ const prisma = new PrismaClient({
   adapter,
 });
 
-const userData: Prisma.UserCreateInput[] = [
+const memberData: Prisma.MemberCreateInput[] = [
   {
     name: "John Cena",
     score: 0,
@@ -39,8 +39,8 @@ const taskData: Prisma.TaskCreateInput[] = [
 ];
 
 export async function main() {
-  for (const user of userData) {
-    await prisma.user.create({ data: user });
+  for (const member of memberData) {
+    await prisma.member.create({ data: member });
   }
   for (const task of taskData) {
     await prisma.task.create({ data: task });

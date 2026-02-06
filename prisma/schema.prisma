@@ -13,17 +13,42 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
+model Organization {
   id    String @id @default(uuid())
   name  String
-  score Int
+  users User[]
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  password      String
+  organizations Organization[]
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  timestamp DateTime @default(now())
+  member    Member   @relation(fields: [memberId], references: [id])
+  memberId  String
+  task      Task     @relation(fields: [taskId], references: [id])
+  taskId    String
+  points    Int // Guardem els punts que valia la tasca en aquell moment
+}
+
+model Member {
+  id     String  @id @default(uuid())
+  name   String
+  score  Int
+  events Event[]
 }
 
 model Task {
-  id            String @id @default(uuid())
+  id            String  @id @default(uuid())
   name          String
   description   String
   score         Int
   frequencyTime BigInt
   lastTimeDone  BigInt
+  events        Event[]
 }

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic"; // To show latest data in the build
 
 
 export default async function Home() {
-  const prismaUsers = await prisma.user.findMany();
+  const prismaMembers = await prisma.member.findMany();
   const prismaTasks = await prisma.task.findMany();
 
   const formattedTasks = prismaTasks.map((task) => ({
@@ -20,7 +20,7 @@ export default async function Home() {
     <div className="site">
       <Header />
       <main style={{ margin: 10 }}>
-        <PendingTasksList tasks={formattedTasks} users={prismaUsers} />
+        <PendingTasksList tasks={formattedTasks} members={prismaMembers} />
       </main>
       <Footer />
     </div>

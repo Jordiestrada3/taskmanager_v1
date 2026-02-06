@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </Link>
       </div>
-      <Link href="/users" rel="Users">
+      <Link href="/members" rel="Members">
         <div className="footer-icon">
           <Users />
         </div>

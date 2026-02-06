@@ -1,5 +1,5 @@
 import { Task } from "@/types/task";
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 import React, { useRef, useState } from "react";
 import ScoreHex from "./ScoreHex";
 import { markPrismaTaskAsDone } from "@/utils/utils";
@@ -7,26 +7,26 @@ import { set } from "zod";
 
 type PendingTaskCardProps = {
   task: Task;
-  users: User[];
+  members: Member[];
   isOpen: boolean;
   onToggle: () => void;
 };
 
 export default function PendingTaskCard({
   task,
-  users,
+  members,
   isOpen,
   onToggle,
 }: PendingTaskCardProps) {
-  const [selectedUserId, setSelectedUserId] = React.useState("");
+  const [selectedMemberId, setSelectedMemberId] = React.useState("");
   const [isPending, setIsPending] = useState(false);
 
-const handleTaskDone = async (task: Task, selectedUser: string) => {
+const handleTaskDone = async (task: Task, selectedMember: string) => {
   if (isPending) return;
   setIsPending(true);
   try {
-    await markPrismaTaskAsDone(task, selectedUser);
-    setSelectedUserId("");
+    await markPrismaTaskAsDone(task, selectedMember);
+    setSelectedMemberId("");
   } catch (error) {
     console.error("Error marking task as done:", error);
   } finally {
@@ -72,22 +72,22 @@ const handleTaskDone = async (task: Task, selectedUser: string) => {
             className="custom-form"
             onSubmit={async (e) => {
               e.preventDefault(); 
-              await handleTaskDone(task, selectedUserId);
+              await handleTaskDone(task, selectedMemberId);
             }}
             style={{ margin: 0, padding: 2 }}
           >
             <select
-              name="user"
-              value={selectedUserId}
-              onChange={(e) => setSelectedUserId(e.target.value)}
+              name="member"
+              value={selectedMemberId}
+              onChange={(e) => setSelectedMemberId(e.target.value)}
               required
             >
               <option value="" disabled>
-                Select a user
+                Select a member
               </option>
-              {users.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.name}
+              {members.map((member) => (
+                <option key={member.id} value={member.id}>
+                  {member.name}
                 </option>
               ))}
             </select>

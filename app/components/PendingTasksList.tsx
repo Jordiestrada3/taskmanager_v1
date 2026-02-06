@@ -3,18 +3,18 @@
 import { Task } from "@/types/task";
 import DoTaskDialog from "./DoTaskDialog";
 import "./FormTrigger/DialogStyle.css";
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 import PendingTaskCard from "./PendingTaskCard";
 import { useState } from "react";
 
 type PendingTasksListProps = {
   tasks: Task[];
-  users: User[];
+  members: Member[];
 };
 
 export default function PendingTasksList({
   tasks,
-  users,
+  members,
 }: PendingTasksListProps) {
   const [openId, setOpenId] = useState("");
 
@@ -51,7 +51,7 @@ export default function PendingTasksList({
           <PendingTaskCard
             key={index}
             task={task}
-            users={users}
+            members={members}
             isOpen={openId === task.id}
             onToggle={() => setOpenId(openId === task.id ? "" : task.id)}
           />

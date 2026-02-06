@@ -3,12 +3,12 @@ import React from "react";
 import { Dialog } from "radix-ui";
 import "./DialogStyle.css";
 import { PlusIcon } from "@radix-ui/react-icons";
-import UserForm from "../UserForm";
+import MemberForm from "../MemberForm";
 import TaskForm from "../TaskForm";
-import { createPrismaTask, createPrismaUser } from "@/utils/utils";
+import { createPrismaTask, createPrismaMember } from "@/utils/utils";
 
 type CreateItemDialogProps = {
-  type: "user" | "task";
+  type: "member" | "task";
   children: React.ReactNode;
 };
 
@@ -28,10 +28,10 @@ export default function CreateItemDialog({ type, children }: CreateItemDialogPro
           <Dialog.Description className="DialogDescription">
             Create a new {type} using the form below.
           </Dialog.Description>
-          {type === "user" && (
-            <UserForm
-              buttonText={"Add User"}
-              action={createPrismaUser}
+          {type === "member" && (
+            <MemberForm
+              buttonText={"Add Member"}
+              action={createPrismaMember}
               onSuccess={() => setIsOpen(false)}
             />
           )}

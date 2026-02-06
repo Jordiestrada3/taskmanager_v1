@@ -4,21 +4,21 @@ import React from "react";
 import { Dialog } from "radix-ui";
 import { markPrismaTaskAsDone } from "@/utils/utils";
 import { Task } from "@/types/task";
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 
 type DoTaskDialogProps = {
   task: Task;
-  users: User[];
+  members: Member[];
   children: any;
 };
 
 export default function DoTaskDialog({
   task,
   children,
-  users,
+  members,
 }: DoTaskDialogProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedUser, setSelectedUser] = React.useState("");
+  const [selectedMember, setSelectedMember] = React.useState("");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -34,21 +34,21 @@ export default function DoTaskDialog({
           <form
             className="custom-form"
             action={() => {
-              markPrismaTaskAsDone(task, selectedUser), setOpen(false);
+              markPrismaTaskAsDone(task, selectedMember), setOpen(false);
             }}
           >
             <select
-              name="user"
-              value={selectedUser}
-              onChange={(e) => setSelectedUser(e.target.value)}
+              name="member"
+              value={selectedMember}
+              onChange={(e) => setSelectedMember(e.target.value)}
               className="do-task-select"
             >
               <option value="" disabled>
-                Select a user
+                Select a member
               </option>
-              {users.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.name}
+              {members.map((member) => (
+                <option key={member.id} value={member.id}>
+                  {member.name}
                 </option>
               ))}
             </select>

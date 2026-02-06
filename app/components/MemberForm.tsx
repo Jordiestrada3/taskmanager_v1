@@ -1,20 +1,20 @@
 "use client";
 import React from "react";
-import { User } from "@/types/user";
+import { Member } from "@/types/member";
 
-type UserFormProps = {
+type MemberFormProps = {
   buttonText: string;
   action: (formData: FormData) => void | Promise<void>;
-  user?: User;
+  member?: Member;
   onSuccess?: () => void;
 };
 
-export default function UserForm({
+export default function MemberForm({
   buttonText,
   action,
-  user,
+  member,
   onSuccess,
-}: UserFormProps) {
+}: MemberFormProps) {
   const [isPending, setIsPending] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,8 +39,8 @@ export default function UserForm({
         <input
           type="text"
           name="name"
-          placeholder="User Name"
-          defaultValue={user?.name}
+          placeholder="Member Name"
+          defaultValue={member?.name}
           required
         />
       </fieldset>

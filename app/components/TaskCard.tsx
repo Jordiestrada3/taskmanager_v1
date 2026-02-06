@@ -17,7 +17,7 @@ export default function TaskCard({
   isOpen,
   onToggle,
 }: TaskCardProps) {
-  const [selectedUser, setSelectedUser] = React.useState("");
+  const [selectedMember, setSelectedMember] = React.useState("");
 
   const contentRef = useRef<HTMLDivElement>(null);
 

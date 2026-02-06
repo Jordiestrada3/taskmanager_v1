@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 import CreateItemDialog from "./FormTrigger/CreateItemDialog";
 
 type HeaderProps = {
-  createType?: "user" | "task";
+  createType?: "member" | "task";
 };
 
 export default function Header({ createType }: HeaderProps) {

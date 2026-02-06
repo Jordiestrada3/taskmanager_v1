@@ -1,10 +1,10 @@
 -- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "Member" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "score" INTEGER NOT NULL,
 
-    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Member_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable

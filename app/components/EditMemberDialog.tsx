@@ -1,20 +1,20 @@
 "use client";
 
 import { Dialog } from "radix-ui";
-import UserForm from "./UserForm";
-import { updatePrismaUser } from "@/utils/utils";
-import { User } from "@/types/user";
+import MemberForm from "./MemberForm";
+import { updatePrismaMember } from "@/utils/utils";
+import { Member } from "@/types/member";
 import { useState } from "react";
 
-type EditUserDialogProps = {
-  user: User;
+type EditMemberDialogProps = {
+  member: Member;
   children: React.ReactNode;
 };
 
-export default function EditUserDialog({
-  user,
+export default function EditMemberDialog({
+  member,
   children,
-}: EditUserDialogProps) {
+}: EditMemberDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,14 +24,14 @@ export default function EditUserDialog({
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Edit User</Dialog.Title>
+          <Dialog.Title className="DialogTitle">Edit Member</Dialog.Title>
           <Dialog.Description className="DialogDescription">
-            Make changes to the selected user here. Click save when you're done.
+            Make changes to the selected member here. Click save when you're done.
           </Dialog.Description>
-          <UserForm
-            buttonText={"Edit User"}
-            action={(formData: FormData) => updatePrismaUser(user, formData)}
-            user={user}
+          <MemberForm
+            buttonText={"Edit Member"}
+            action={(formData: FormData) => updatePrismaMember(member, formData)}
+            member={member}
             onSuccess={() => setIsOpen(false)}
           />
         </Dialog.Content>
