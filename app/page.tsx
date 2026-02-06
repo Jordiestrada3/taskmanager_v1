@@ -3,6 +3,9 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic"; // To show latest data in the build
+
+
 export default async function Home() {
   const prismaUsers = await prisma.user.findMany();
   const prismaTasks = await prisma.task.findMany();

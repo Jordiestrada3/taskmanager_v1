@@ -1,4 +1,3 @@
-import { he } from "zod/locales";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import TasksList from "../components/TasksList";
