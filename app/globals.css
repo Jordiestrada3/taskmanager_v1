@@ -107,8 +107,12 @@ main {
   align-items: center;
 }
 
+.footer-icon{
+  padding: 20px 40px;
+}
+
 .footer-icon:active {
-  transform: scale(0.8);
+  transform: scale(0.9);
   transition: 0.2s ease-out;
 }
 

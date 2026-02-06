@@ -11,11 +11,11 @@ export default function Footer() {
 
   return (
     <footer className="custom-footer">
-      <div className="footer-icon">
-        <Link href="/tasks" rel="Tasks">
+      <Link href="/tasks" rel="Tasks">
+        <div className="footer-icon">
           <List />
-        </Link>
-      </div>
+        </div>
+      </Link>
       <div>
         <Link href="/" rel="Pending Tasks">
           <div className="footer-hex">
@@ -32,11 +32,11 @@ export default function Footer() {
           </div>
         </Link>
       </div>
-      <div className="footer-icon">
-        <Link href="/users" rel="Users">
+      <Link href="/users" rel="Users">
+        <div className="footer-icon">
           <Users />
-        </Link>
-      </div>
+        </div>
+      </Link>
     </footer>
   );
 }
