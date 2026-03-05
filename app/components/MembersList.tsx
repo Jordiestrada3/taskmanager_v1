@@ -21,7 +21,9 @@ export default function MembersList({ members }: MembersListProps) {
         width: "100%",
       }}
     >
-      {members.map((member, index) => (
+      {[...members]
+      .sort((a, b) => b.score - a.score)
+      .map((member, index) => (
         <MemberCard
           key={index}
           member={member}

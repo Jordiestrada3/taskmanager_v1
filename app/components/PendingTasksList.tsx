@@ -47,7 +47,9 @@ export default function PendingTasksList({
           Everything is buzzing! You have no pending tasks in your Hive.
         </p>
       ) : (
-        pendingTasks.map((task, index) => (
+        [...pendingTasks] //copy list to avoid modifying the original
+        .sort((a, b) => a.lastTimeDone - b.lastTimeDone) //sort by oldest done time first
+        .map((task, index) => (
           <PendingTaskCard
             key={index}
             task={task}
