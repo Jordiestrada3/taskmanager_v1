@@ -98,6 +98,24 @@ export async function updatePrismaMember(member: Member, formData: FormData) {
   revalidatePath("/");
 }
 
+export async function createPrismaEvent(memberId: string, taskId: string, score: number) {
+  await prisma.event.create({
+    data: {
+      memberId,
+      taskId,
+      score,
+    },
+  });
+}
+
+export async function deletePrismaEvent(eventId: string) {
+  await prisma.event.delete({
+    where: {
+      id: eventId,
+    },
+  });
+}
+
 export async function markPrismaTaskAsDone(task: Task, memberId: string) {
   "use server";
   const taskId = task.id;
@@ -111,14 +129,16 @@ export async function markPrismaTaskAsDone(task: Task, memberId: string) {
     },
   });
 
-  await prisma.member.update({
-    where: {
-      id: memberId,
-    },
-    data: {
-      score: { increment: task.score },
-    },
-  });
+  // await prisma.member.update({
+  //   where: {
+  //     id: memberId,
+  //   },
+  //   data: {
+  //     score: { increment: task.score },
+  //   },
+  // });
+
+  await createPrismaEvent(memberId, taskId, task.score);
 
   revalidatePath("/");
 }

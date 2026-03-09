@@ -1,24 +1,30 @@
 import { Member } from "@/types/member";
-import React, { useRef, useState } from "react";
-import { Delete, Pencil, Trash2 } from "lucide-react";
+import React, { useRef } from "react";
+import { Pencil, Trash2 } from "lucide-react";
+import { Event } from "@/types/event";
 import ScoreHex from "./ScoreHex";
-import EditMemberForm from "./EditMemberDialog";
 import { deletePrismaMember, markPrismaTaskAsDone } from "@/utils/utils";
 import DeleteButton from "./DeleteButon";
 import EditMemberDialog from "./EditMemberDialog";
 
 type MemberCardProps = {
   member: Member;
+  memberEvents: Event[];
   isOpen: boolean;
   onToggle: () => void;
 };
 
-export default function MemberCard({ member, isOpen, onToggle }: MemberCardProps) {
-  const [selectedMember, setSelectedMember] = React.useState("");
-
+export default function MemberCard({
+  member,
+  memberEvents,
+  isOpen,
+  onToggle,
+}: MemberCardProps) {
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const now = Date.now();
+  const memberScoreFromEvents = memberEvents.reduce(
+    (acc, event) => acc + event.score,
+    0,
+  );
 
   return (
     <div className="custom-card">
@@ -32,7 +38,7 @@ export default function MemberCard({ member, isOpen, onToggle }: MemberCardProps
         onClick={onToggle}
       >
         <h1 style={{ lineHeight: 1.4 }}>{member.name}</h1>
-        <ScoreHex score={member.score} hexColor="#ffb300" />
+        <ScoreHex score={memberScoreFromEvents} hexColor="#ffb300" />
       </div>
       <div
         className="card-extra"
@@ -68,7 +74,10 @@ export default function MemberCard({ member, isOpen, onToggle }: MemberCardProps
                 <Pencil />
               </button>
             </EditMemberDialog>
-            <DeleteButton action={() => deletePrismaMember(member)} item={member}>
+            <DeleteButton
+              action={() => deletePrismaMember(member)}
+              item={member}
+            >
               <button className="delete-item-button">
                 <Trash2 />
               </button>

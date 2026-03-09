@@ -7,12 +7,13 @@ export const dynamic = "force-dynamic"; // To show latest data in the build
 
 export default async function MembersPage() {
   const prismaMembers = await prisma.member.findMany();
+  const prismaEvents = await prisma.event.findMany();
 
   return (
     <div className="site">
       <Header createType="member" />
       <main style={{ margin: 10 }}>
-        <MembersList members={prismaMembers} />
+        <MembersList members={prismaMembers} events={prismaEvents} />
       </main>
       <Footer />
     </div>
