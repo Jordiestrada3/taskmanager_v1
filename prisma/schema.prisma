@@ -13,42 +13,51 @@ datasource db {
   provider = "postgresql"
 }
 
-model Organization {
-  id    String @id @default(uuid())
-  name  String
-  users User[]
-}
+// model Organization {
+//   id      String   @id @default(uuid())
+//   name    String
+//   users   User[]
+//   events  Event[]
+//   members Member[]
+//   tasks   Task[]
+// }
 
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
   password      String
-  organizations Organization[]
+  // organizations Organization[]
 }
 
 model Event {
-  id        String   @id @default(uuid())
-  timestamp DateTime @default(now())
-  member    Member   @relation(fields: [memberId], references: [id])
-  memberId  String
-  task      Task     @relation(fields: [taskId], references: [id])
-  taskId    String
-  score    Int // Guardem els punts que valia la tasca en aquell moment
+  id             String       @id @default(uuid())
+  timestamp      DateTime     @default(now())
+  member         Member       @relation(fields: [memberId], references: [id])
+  memberId       String
+  task           Task         @relation(fields: [taskId], references: [id])
+  taskId         String
+  score          Int // Guardem els punts que valia la tasca en aquell moment
+  // organization   Organization @relation(fields: [organizationId], references: [id])
+  // organizationId String
 }
 
 model Member {
-  id     String  @id @default(uuid())
-  name   String
-  score  Int
-  events Event[]
+  id             String       @id @default(uuid())
+  name           String
+  score          Int
+  events         Event[]
+  // organization   Organization @relation(fields: [organizationId], references: [id])
+  // organizationId String
 }
 
 model Task {
-  id            String  @id @default(uuid())
-  name          String
-  description   String
-  score         Int
-  frequencyTime BigInt
-  lastTimeDone  BigInt
-  events        Event[]
+  id             String       @id @default(uuid())
+  name           String
+  description    String
+  score          Int
+  frequencyTime  BigInt
+  lastTimeDone   BigInt
+  events         Event[]
+  // organization   Organization @relation(fields: [organizationId], references: [id])
+  // organizationId String
 }
