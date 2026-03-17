@@ -23,41 +23,50 @@ datasource db {
 // }
 
 model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  password      String
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
   // organizations Organization[]
 }
 
 model Event {
-  id             String       @id @default(uuid())
-  timestamp      DateTime     @default(now())
-  member         Member       @relation(fields: [memberId], references: [id])
-  memberId       String
-  task           Task         @relation(fields: [taskId], references: [id])
-  taskId         String
-  score          Int // Guardem els punts que valia la tasca en aquell moment
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  member          Member?   @relation(fields: [memberId], references: [id], onDelete: SetNull)
+  memberId        String?
+  memberName      String
+  task            Task?     @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  taskId          String?
+  taskName        String
+  taskDescription String
+  taskScore       Int
+  correction       Boolean  @default(false)
+
   // organization   Organization @relation(fields: [organizationId], references: [id])
   // organizationId String
 }
 
 model Member {
-  id             String       @id @default(uuid())
-  name           String
-  score          Int
-  events         Event[]
+  id        String   @id @default(uuid())
+  name      String
+  score     Int
+  events    Event[]
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
   // organization   Organization @relation(fields: [organizationId], references: [id])
   // organizationId String
 }
 
 model Task {
-  id             String       @id @default(uuid())
-  name           String
-  description    String
-  score          Int
-  frequencyTime  BigInt
-  lastTimeDone   BigInt
-  events         Event[]
+  id            String   @id @default(uuid())
+  name          String
+  description   String
+  score         Int
+  frequencyTime BigInt
+  lastTimeDone  BigInt
+  events        Event[]
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
   // organization   Organization @relation(fields: [organizationId], references: [id])
   // organizationId String
 }

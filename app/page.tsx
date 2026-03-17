@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <div className="site">
-      <Header />
+      <Header showEventsLink />
       <main style={{ margin: 10 }}>
         <PendingTasksList tasks={formattedTasks} members={prismaMembers} />
       </main>

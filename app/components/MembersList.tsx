@@ -24,6 +24,7 @@ export default function MembersList({ members, events }: MembersListProps) {
       }}
     >
       {[...members]
+      .filter((member) => member.isActive) //filter out deleted members
       .sort((a, b) => b.score - a.score)
       .map((member, index) => (
         <MemberCard

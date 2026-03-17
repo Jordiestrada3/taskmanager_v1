@@ -22,7 +22,7 @@ export default function MemberCard({
 }: MemberCardProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const memberScoreFromEvents = memberEvents.reduce(
-    (acc, event) => acc + event.score,
+    (acc, event) => acc + event.taskScore,
     0,
   );
 

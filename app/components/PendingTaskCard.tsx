@@ -21,10 +21,12 @@ export default function PendingTaskCard({
   const [selectedMemberId, setSelectedMemberId] = React.useState("");
   const [isPending, setIsPending] = useState(false);
 
-const handleTaskDone = async (task: Task, selectedMember: string) => {
+const handleTaskDone = async (task: Task, selectedMemberId: string) => {
   if (isPending) return;
   setIsPending(true);
   try {
+    const selectedMember = members.find((member) => member.id === selectedMemberId);
+    if (!selectedMember) return;
     await markPrismaTaskAsDone(task, selectedMember);
     setSelectedMemberId("");
   } catch (error) {

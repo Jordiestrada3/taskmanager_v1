@@ -1,7 +1,11 @@
 export type Event = {
   id: string;
-  timestamp: Date;
-  memberId: string;
-  taskId: string;
-  score: number;
+  createdAt: Date;
+  memberId: string | null;
+  memberName: string;
+  taskId: string | null;
+  taskName: string;
+  taskDescription: string;
+  taskScore: number;
+  correction: boolean;
 };

@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { Task } from "@/types/task";
 import { Member } from "@/types/member";
+import { Event } from "@/types/event";
 import prisma from "@/lib/prisma";
 
 export async function createPrismaTask(formData: FormData) {
@@ -25,9 +26,12 @@ export async function createPrismaTask(formData: FormData) {
 }
 
 export async function deletePrismaTask(task: Task) {
-  await prisma.task.delete({
+  await prisma.task.update({
     where: {
       id: task.id,
+    },
+    data: {
+      isActive: false,
     },
   });
   revalidatePath("/");
@@ -72,9 +76,12 @@ export async function createPrismaMember(formData: FormData) {
 }
 
 export async function deletePrismaMember(member: Member) {
-  await prisma.member.delete({
+  await prisma.member.update({
     where: {
       id: member.id,
+    },
+    data: {
+      isActive: false,
     },
   });
   revalidatePath("/");
@@ -98,25 +105,44 @@ export async function updatePrismaMember(member: Member, formData: FormData) {
   revalidatePath("/");
 }
 
-export async function createPrismaEvent(memberId: string, taskId: string, score: number) {
+export async function createPrismaEvent(task: Task, member: Member) {
   await prisma.event.create({
     data: {
-      memberId,
-      taskId,
-      score,
+      memberId: member.id,
+      memberName: member.name,
+      taskId: task.id,
+      taskName: task.name,
+      taskDescription: task.description,
+      taskScore: task.score,
     },
   });
 }
 
-export async function deletePrismaEvent(eventId: string) {
-  await prisma.event.delete({
-    where: {
-      id: eventId,
-    },
-  });
+export async function deletePrismaEvent(event: Event) {
+  if (event.correction) {
+    await prisma.event.delete({
+      where: {
+        id: event.id,
+      },
+    });
+  } else {
+    await prisma.event.create({
+      data: {
+        memberId: event.memberId,
+        memberName: event.memberName,
+        taskId: event.taskId,
+        taskName: event.taskName,
+        taskDescription: event.taskDescription,
+        taskScore: -event.taskScore,
+        correction: true,
+      },
+    });
+  }
+
+  revalidatePath("/");
 }
 
-export async function markPrismaTaskAsDone(task: Task, memberId: string) {
+export async function markPrismaTaskAsDone(task: Task, member: Member) {
   "use server";
   const taskId = task.id;
 
@@ -129,16 +155,7 @@ export async function markPrismaTaskAsDone(task: Task, memberId: string) {
     },
   });
 
-  // await prisma.member.update({
-  //   where: {
-  //     id: memberId,
-  //   },
-  //   data: {
-  //     score: { increment: task.score },
-  //   },
-  // });
-
-  await createPrismaEvent(memberId, taskId, task.score);
+  await createPrismaEvent(task, member);
 
   revalidatePath("/");
 }

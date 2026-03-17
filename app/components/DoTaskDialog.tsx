@@ -18,7 +18,7 @@ export default function DoTaskDialog({
   members,
 }: DoTaskDialogProps) {
   const [open, setOpen] = React.useState(false);
-  const [selectedMember, setSelectedMember] = React.useState("");
+  const [selectedMemberId, setSelectedMemberId] = React.useState("");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -34,13 +34,18 @@ export default function DoTaskDialog({
           <form
             className="custom-form"
             action={() => {
+              const selectedMember = members.find(
+                (member) => member.id === selectedMemberId
+              );
+              console.log("dev ~ DoTaskDialog ~ selectedMember:", selectedMember)
+              if (!selectedMember) return;
               markPrismaTaskAsDone(task, selectedMember), setOpen(false);
             }}
           >
             <select
               name="member"
-              value={selectedMember}
-              onChange={(e) => setSelectedMember(e.target.value)}
+              value={selectedMemberId}
+              onChange={(e) => setSelectedMemberId(e.target.value)}
               className="do-task-select"
             >
               <option value="" disabled>

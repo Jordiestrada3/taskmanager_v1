@@ -48,6 +48,7 @@ export default function PendingTasksList({
         </p>
       ) : (
         [...pendingTasks] //copy list to avoid modifying the original
+        .filter((task) => task.isActive) //filter out deleted tasks
         .sort((a, b) => a.lastTimeDone - b.lastTimeDone) //sort by oldest done time first
         .map((task, index) => (
           <PendingTaskCard

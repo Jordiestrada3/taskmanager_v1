@@ -5,4 +5,5 @@ export type Task = {
   score: number;
   frequencyTime: number;
   lastTimeDone: number;
+  isActive: boolean;
 };

@@ -12,6 +12,7 @@ type TasksListProps = {
 };
 
 export default function TasksList({ tasks }: TasksListProps) {
+console.log("dev ~ TasksList ~ tasks:", tasks)
 
     const [openId, setOpenId] = useState("");
   
@@ -25,7 +26,9 @@ export default function TasksList({ tasks }: TasksListProps) {
         width: "100%",
       }}
     >
-      {tasks.map((task, index) => (
+      {tasks
+      .filter((task) => task.isActive) //filter out deleted tasks
+      .map((task, index) => (
           <TaskCard
             key={index}
             task={task}
