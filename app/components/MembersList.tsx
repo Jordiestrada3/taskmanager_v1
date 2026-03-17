@@ -24,17 +24,30 @@ export default function MembersList({ members, events }: MembersListProps) {
       }}
     >
       {[...members]
-      .filter((member) => member.isActive) //filter out deleted members
-      .sort((a, b) => b.score - a.score)
-      .map((member, index) => (
-        <MemberCard
-          key={index}
-          member={member}
-          memberEvents={events.filter((e) => e.memberId === member.id)} // Filter events for the current member
-          isOpen={openId === member.id}
-          onToggle={() => setOpenId(openId === member.id ? "" : member.id)}
-        />
-      ))}
+        .filter((member) => member.isActive) //filter out deleted members
+        // .sort((a, b) => b.score - a.score)
+        .sort((a, b) => {
+          const memberEventsA = events.filter((e) => e.memberId === a.id);
+          const memberEventsB = events.filter((e) => e.memberId === b.id);
+          const memberScoreFromEventsA = memberEventsA.reduce(
+            (acc, event) => acc + event.taskScore,
+            0,
+          );
+          const memberScoreFromEventsB = memberEventsB.reduce(
+            (acc, event) => acc + event.taskScore,
+            0,
+          );
+          return memberScoreFromEventsB - memberScoreFromEventsA;
+        })
+        .map((member, index) => (
+          <MemberCard
+            key={index}
+            member={member}
+            memberEvents={events.filter((e) => e.memberId === member.id)} // Filter events for the current member
+            isOpen={openId === member.id}
+            onToggle={() => setOpenId(openId === member.id ? "" : member.id)}
+          />
+        ))}
     </div>
   );
 }
