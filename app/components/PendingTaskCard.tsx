@@ -87,7 +87,9 @@ const handleTaskDone = async (task: Task, selectedMemberId: string) => {
               <option value="" disabled>
                 Select a member
               </option>
-              {members.map((member) => (
+              {members
+              .filter((member) => member.isActive)
+              .map((member) => (
                 <option key={member.id} value={member.id}>
                   {member.name}
                 </option>
