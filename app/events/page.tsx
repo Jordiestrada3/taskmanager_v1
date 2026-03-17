@@ -10,9 +10,18 @@ export default async function EventsPage() {
 
   return (
     <div className="site">
-      <Header createType="member" />
+      <Header />
       <main style={{ margin: 10 }}>
-        <h1 style={{ textAlign: "left", fontSize: 36, width: "100%", padding: "0px 25px" }}>Events</h1>
+        <h1
+          style={{
+            textAlign: "left",
+            fontSize: 36,
+            width: "100%",
+            padding: "0px 25px",
+          }}
+        >
+          Events
+        </h1>
         <EventsList events={prismaEvents} />
       </main>
       <Footer />
